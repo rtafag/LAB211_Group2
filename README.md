@@ -47,8 +47,3 @@ Hệ thống mô phỏng quy trình quản lý chuỗi nhà thuốc với dữ l
 └── README.md
 ```
 
-
-- Không được sửa file CSV thủ công khi kiểm tra chức năng!
-- Nộp cấu trúc file/zip đúng quy định.
-
----
