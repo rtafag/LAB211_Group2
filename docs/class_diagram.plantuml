@@ -1,0 +1,198 @@
+@startuml
+
+' ==== ENUM ====
+enum PrescriptionStatus {
+  PENDING
+  DISPENSED
+}
+enum PharmacistRole {
+  PHARMACIST
+  MANAGER
+}
+
+' ==== BASE ENTITY ====
+abstract class BaseEntity {
+  - id: String
+  + getId(): String
+  + setId(String): void
+  + toCsvLine(): String
+  + fromCsvLine(String): BaseEntity
+}
+
+' ==== BRANCH ====
+class Branch extends BaseEntity {
+  - name: String
+  - address: String
+  - phone: String
+  + getName(): String
+  + setName(String): void
+  + getAddress(): String
+  + setAddress(String): void
+  + getPhone(): String
+  + setPhone(String): void
+}
+
+' ==== MEDICINE ====
+class Medicine extends BaseEntity {
+  - name: String
+  - unit: String
+  - description: String
+  - manufacturer: String
+  + getName(): String
+  + setName(String): void
+  + getUnit(): String
+  + setUnit(String): void
+  + getDescription(): String
+  + setDescription(String): void
+  + getManufacturer(): String
+  + setManufacturer(String): void
+}
+
+' ==== STOCK ====
+class Stock extends BaseEntity {
+  - branchId: String
+  - medicineId: String
+  - quantity: int
+  - version: int
+  + getBranchId(): String
+  + getMedicineId(): String
+  + getQuantity(): int
+  + setQuantity(int): void
+  + getVersion(): int
+  + setVersion(int): void
+  + deduct(int): boolean
+}
+
+' ==== PHARMACIST ====
+class Pharmacist extends BaseEntity {
+  - name: String
+  - branchId: String
+  - username: String
+  - password: String
+  - role: PharmacistRole
+  + getName(): String
+  + getBranchId(): String
+  + getUsername(): String
+  + getRole(): PharmacistRole
+  + setRole(PharmacistRole): void
+}
+
+' ==== PRESCRIPTION ====
+class Prescription extends BaseEntity {
+  - patientName: String
+  - patientPhone: String
+  - doctorName: String
+  - createdDate: LocalDate
+  - expiredDate: LocalDate
+  - status: PrescriptionStatus
+  - version: int
+  + getPatientName(): String
+  + getStatus(): PrescriptionStatus
+  + setStatus(PrescriptionStatus): void
+  + getVersion(): int
+  + setVersion(int): void
+}
+
+' ==== PRESCRIPTION ITEM ====
+class PrescriptionItem extends BaseEntity {
+  - prescriptionId: String
+  - medicineId: String
+  - quantity: int
+  - dosage: String
+  + getPrescriptionId(): String
+  + getMedicineId(): String
+  + getQuantity(): int
+  + getDosage(): String
+}
+
+' ==== DISPENSE RECORD ====
+class DispenseRecord extends BaseEntity {
+  - prescriptionId: String
+  - pharmacistId: String
+  - dispensedAt: LocalDateTime
+  - medicinesDispensed: String
+  - quantityDispensed: String
+  + getPrescriptionId(): String
+  + getPharmacistId(): String
+  + getDispensedAt(): LocalDateTime
+}
+
+' ==== BATCH LOT ====
+class BatchLot extends BaseEntity {
+  - medicineId: String
+  - branchId: String
+  - quantity: int
+  - expiryDate: LocalDate
+  - manufactureDate: LocalDate
+  - version: int
+  + getMedicineId(): String
+  + getBranchId(): String
+  + getQuantity(): int
+  + setQuantity(int): void
+  + getExpiryDate(): LocalDate
+  + isExpired(): boolean
+  + getVersion(): int
+  + setVersion(int): void
+}
+
+' ==== CSV REPOSITORY & CONCRETE REPO ====
+abstract class CsvRepository<T extends BaseEntity> {
+  + loadAll(): List<T>
+  + saveAll(List<T>): void
+  + parseLine(String): T
+  + toLine(T): String
+}
+
+class BranchRepository
+class MedicineRepository
+class StockRepository
+class PharmacistRepository
+class PrescriptionRepository
+class PrescriptionItemRepository
+class DispenseRecordRepository
+class BatchLotRepository
+
+CsvRepository <|-- BranchRepository
+CsvRepository <|-- MedicineRepository
+CsvRepository <|-- StockRepository
+CsvRepository <|-- PharmacistRepository
+CsvRepository <|-- PrescriptionRepository
+CsvRepository <|-- PrescriptionItemRepository
+CsvRepository <|-- DispenseRecordRepository
+CsvRepository <|-- BatchLotRepository
+
+' ==== UTIL ====
+class DispenseCalculator {
+  + calculateTotal(Prescription): double
+}
+
+class StockAllocator {
+  + allocate(List<BatchLot>, int): List<BatchLot>
+}
+
+' ==== RELATIONSHIPS MULTIPLICITY ====
+Branch "1" o-- "many" Stock : contains >
+Branch "1" o-- "many" Pharmacist
+Medicine "1" o-- "many" BatchLot
+Medicine "1" o-- "many" Stock
+
+Prescription "1" o-- "many" PrescriptionItem
+Prescription "1" o-- "many" DispenseRecord
+
+Pharmacist "1" o-- "many" DispenseRecord
+BatchLotRepository ..> BatchLot
+StockRepository ..> Stock
+PrescriptionRepository ..> Prescription
+DispenseRecordRepository ..> DispenseRecord
+
+' ==== GENERALIZATION ====
+BaseEntity <|-- Branch
+BaseEntity <|-- Medicine
+BaseEntity <|-- Stock
+BaseEntity <|-- Pharmacist
+BaseEntity <|-- Prescription
+BaseEntity <|-- PrescriptionItem
+BaseEntity <|-- DispenseRecord
+BaseEntity <|-- BatchLot
+
+@enduml
