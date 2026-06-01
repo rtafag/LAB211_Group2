@@ -1,201 +1,201 @@
-medicine_id,medicine_name,unit,description,manufacturer
-M0001,Medicine 1,tablet,Desc 1,Manu 1
-M0002,Medicine 2,tablet,Desc 2,Manu 8
-M0003,Medicine 3,tablet,Desc 3,Manu 9
-M0004,Medicine 4,tablet,Desc 4,Manu 9
-M0005,Medicine 5,tablet,Desc 5,Manu 9
-M0006,Medicine 6,tablet,Desc 6,Manu 7
-M0007,Medicine 7,tablet,Desc 7,Manu 5
-M0008,Medicine 8,tablet,Desc 8,Manu 1
-M0009,Medicine 9,tablet,Desc 9,Manu 2
-M0010,Medicine 10,tablet,Desc 10,Manu 4
-M0011,Medicine 11,tablet,Desc 11,Manu 10
-M0012,Medicine 12,tablet,Desc 12,Manu 6
-M0013,Medicine 13,tablet,Desc 13,Manu 8
-M0014,Medicine 14,tablet,Desc 14,Manu 5
-M0015,Medicine 15,tablet,Desc 15,Manu 5
-M0016,Medicine 16,tablet,Desc 16,Manu 8
-M0017,Medicine 17,tablet,Desc 17,Manu 7
-M0018,Medicine 18,tablet,Desc 18,Manu 7
-M0019,Medicine 19,tablet,Desc 19,Manu 2
-M0020,Medicine 20,tablet,Desc 20,Manu 10
-M0021,Medicine 21,tablet,Desc 21,Manu 8
-M0022,Medicine 22,tablet,Desc 22,Manu 10
-M0023,Medicine 23,tablet,Desc 23,Manu 9
-M0024,Medicine 24,tablet,Desc 24,Manu 3
-M0025,Medicine 25,tablet,Desc 25,Manu 5
-M0026,Medicine 26,tablet,Desc 26,Manu 3
-M0027,Medicine 27,tablet,Desc 27,Manu 2
-M0028,Medicine 28,tablet,Desc 28,Manu 10
-M0029,Medicine 29,tablet,Desc 29,Manu 8
-M0030,Medicine 30,tablet,Desc 30,Manu 10
-M0031,Medicine 31,tablet,Desc 31,Manu 9
-M0032,Medicine 32,tablet,Desc 32,Manu 10
-M0033,Medicine 33,tablet,Desc 33,Manu 3
-M0034,Medicine 34,tablet,Desc 34,Manu 6
-M0035,Medicine 35,tablet,Desc 35,Manu 2
-M0036,Medicine 36,tablet,Desc 36,Manu 4
-M0037,Medicine 37,tablet,Desc 37,Manu 4
-M0038,Medicine 38,tablet,Desc 38,Manu 7
-M0039,Medicine 39,tablet,Desc 39,Manu 7
-M0040,Medicine 40,tablet,Desc 40,Manu 1
-M0041,Medicine 41,tablet,Desc 41,Manu 5
-M0042,Medicine 42,tablet,Desc 42,Manu 2
-M0043,Medicine 43,tablet,Desc 43,Manu 9
-M0044,Medicine 44,tablet,Desc 44,Manu 10
-M0045,Medicine 45,tablet,Desc 45,Manu 10
-M0046,Medicine 46,tablet,Desc 46,Manu 6
-M0047,Medicine 47,tablet,Desc 47,Manu 2
-M0048,Medicine 48,tablet,Desc 48,Manu 6
-M0049,Medicine 49,tablet,Desc 49,Manu 2
-M0050,Medicine 50,tablet,Desc 50,Manu 1
-M0051,Medicine 51,tablet,Desc 51,Manu 7
-M0052,Medicine 52,tablet,Desc 52,Manu 5
-M0053,Medicine 53,tablet,Desc 53,Manu 8
-M0054,Medicine 54,tablet,Desc 54,Manu 5
-M0055,Medicine 55,tablet,Desc 55,Manu 9
-M0056,Medicine 56,tablet,Desc 56,Manu 4
-M0057,Medicine 57,tablet,Desc 57,Manu 8
-M0058,Medicine 58,tablet,Desc 58,Manu 6
-M0059,Medicine 59,tablet,Desc 59,Manu 6
-M0060,Medicine 60,tablet,Desc 60,Manu 3
-M0061,Medicine 61,tablet,Desc 61,Manu 5
-M0062,Medicine 62,tablet,Desc 62,Manu 4
-M0063,Medicine 63,tablet,Desc 63,Manu 6
-M0064,Medicine 64,tablet,Desc 64,Manu 10
-M0065,Medicine 65,tablet,Desc 65,Manu 8
-M0066,Medicine 66,tablet,Desc 66,Manu 6
-M0067,Medicine 67,tablet,Desc 67,Manu 9
-M0068,Medicine 68,tablet,Desc 68,Manu 2
-M0069,Medicine 69,tablet,Desc 69,Manu 8
-M0070,Medicine 70,tablet,Desc 70,Manu 10
-M0071,Medicine 71,tablet,Desc 71,Manu 4
-M0072,Medicine 72,tablet,Desc 72,Manu 1
-M0073,Medicine 73,tablet,Desc 73,Manu 3
-M0074,Medicine 74,tablet,Desc 74,Manu 10
-M0075,Medicine 75,tablet,Desc 75,Manu 9
-M0076,Medicine 76,tablet,Desc 76,Manu 9
-M0077,Medicine 77,tablet,Desc 77,Manu 10
-M0078,Medicine 78,tablet,Desc 78,Manu 2
-M0079,Medicine 79,tablet,Desc 79,Manu 7
-M0080,Medicine 80,tablet,Desc 80,Manu 3
-M0081,Medicine 81,tablet,Desc 81,Manu 10
-M0082,Medicine 82,tablet,Desc 82,Manu 6
-M0083,Medicine 83,tablet,Desc 83,Manu 10
-M0084,Medicine 84,tablet,Desc 84,Manu 2
-M0085,Medicine 85,tablet,Desc 85,Manu 1
-M0086,Medicine 86,tablet,Desc 86,Manu 4
-M0087,Medicine 87,tablet,Desc 87,Manu 10
-M0088,Medicine 88,tablet,Desc 88,Manu 2
-M0089,Medicine 89,tablet,Desc 89,Manu 3
-M0090,Medicine 90,tablet,Desc 90,Manu 9
-M0091,Medicine 91,tablet,Desc 91,Manu 7
-M0092,Medicine 92,tablet,Desc 92,Manu 2
-M0093,Medicine 93,tablet,Desc 93,Manu 1
-M0094,Medicine 94,tablet,Desc 94,Manu 10
-M0095,Medicine 95,tablet,Desc 95,Manu 1
-M0096,Medicine 96,tablet,Desc 96,Manu 8
-M0097,Medicine 97,tablet,Desc 97,Manu 10
-M0098,Medicine 98,tablet,Desc 98,Manu 5
-M0099,Medicine 99,tablet,Desc 99,Manu 3
-M0100,Medicine 100,tablet,Desc 100,Manu 7
-M0101,Medicine 101,tablet,Desc 101,Manu 9
-M0102,Medicine 102,tablet,Desc 102,Manu 5
-M0103,Medicine 103,tablet,Desc 103,Manu 2
-M0104,Medicine 104,tablet,Desc 104,Manu 9
-M0105,Medicine 105,tablet,Desc 105,Manu 7
-M0106,Medicine 106,tablet,Desc 106,Manu 7
-M0107,Medicine 107,tablet,Desc 107,Manu 2
-M0108,Medicine 108,tablet,Desc 108,Manu 2
-M0109,Medicine 109,tablet,Desc 109,Manu 1
-M0110,Medicine 110,tablet,Desc 110,Manu 2
-M0111,Medicine 111,tablet,Desc 111,Manu 5
-M0112,Medicine 112,tablet,Desc 112,Manu 2
-M0113,Medicine 113,tablet,Desc 113,Manu 10
-M0114,Medicine 114,tablet,Desc 114,Manu 4
-M0115,Medicine 115,tablet,Desc 115,Manu 7
-M0116,Medicine 116,tablet,Desc 116,Manu 7
-M0117,Medicine 117,tablet,Desc 117,Manu 1
-M0118,Medicine 118,tablet,Desc 118,Manu 10
-M0119,Medicine 119,tablet,Desc 119,Manu 10
-M0120,Medicine 120,tablet,Desc 120,Manu 6
-M0121,Medicine 121,tablet,Desc 121,Manu 7
-M0122,Medicine 122,tablet,Desc 122,Manu 6
-M0123,Medicine 123,tablet,Desc 123,Manu 9
-M0124,Medicine 124,tablet,Desc 124,Manu 1
-M0125,Medicine 125,tablet,Desc 125,Manu 5
-M0126,Medicine 126,tablet,Desc 126,Manu 9
-M0127,Medicine 127,tablet,Desc 127,Manu 4
-M0128,Medicine 128,tablet,Desc 128,Manu 9
-M0129,Medicine 129,tablet,Desc 129,Manu 2
-M0130,Medicine 130,tablet,Desc 130,Manu 1
-M0131,Medicine 131,tablet,Desc 131,Manu 4
-M0132,Medicine 132,tablet,Desc 132,Manu 4
-M0133,Medicine 133,tablet,Desc 133,Manu 4
-M0134,Medicine 134,tablet,Desc 134,Manu 5
-M0135,Medicine 135,tablet,Desc 135,Manu 9
-M0136,Medicine 136,tablet,Desc 136,Manu 7
-M0137,Medicine 137,tablet,Desc 137,Manu 6
-M0138,Medicine 138,tablet,Desc 138,Manu 10
-M0139,Medicine 139,tablet,Desc 139,Manu 1
-M0140,Medicine 140,tablet,Desc 140,Manu 5
-M0141,Medicine 141,tablet,Desc 141,Manu 9
-M0142,Medicine 142,tablet,Desc 142,Manu 10
-M0143,Medicine 143,tablet,Desc 143,Manu 1
-M0144,Medicine 144,tablet,Desc 144,Manu 1
-M0145,Medicine 145,tablet,Desc 145,Manu 1
-M0146,Medicine 146,tablet,Desc 146,Manu 8
-M0147,Medicine 147,tablet,Desc 147,Manu 8
-M0148,Medicine 148,tablet,Desc 148,Manu 2
-M0149,Medicine 149,tablet,Desc 149,Manu 10
-M0150,Medicine 150,tablet,Desc 150,Manu 8
-M0151,Medicine 151,tablet,Desc 151,Manu 3
-M0152,Medicine 152,tablet,Desc 152,Manu 5
-M0153,Medicine 153,tablet,Desc 153,Manu 8
-M0154,Medicine 154,tablet,Desc 154,Manu 8
-M0155,Medicine 155,tablet,Desc 155,Manu 7
-M0156,Medicine 156,tablet,Desc 156,Manu 6
-M0157,Medicine 157,tablet,Desc 157,Manu 3
-M0158,Medicine 158,tablet,Desc 158,Manu 1
-M0159,Medicine 159,tablet,Desc 159,Manu 7
-M0160,Medicine 160,tablet,Desc 160,Manu 4
-M0161,Medicine 161,tablet,Desc 161,Manu 2
-M0162,Medicine 162,tablet,Desc 162,Manu 1
-M0163,Medicine 163,tablet,Desc 163,Manu 6
-M0164,Medicine 164,tablet,Desc 164,Manu 7
-M0165,Medicine 165,tablet,Desc 165,Manu 1
-M0166,Medicine 166,tablet,Desc 166,Manu 2
-M0167,Medicine 167,tablet,Desc 167,Manu 5
-M0168,Medicine 168,tablet,Desc 168,Manu 1
-M0169,Medicine 169,tablet,Desc 169,Manu 3
-M0170,Medicine 170,tablet,Desc 170,Manu 9
-M0171,Medicine 171,tablet,Desc 171,Manu 7
-M0172,Medicine 172,tablet,Desc 172,Manu 10
-M0173,Medicine 173,tablet,Desc 173,Manu 7
-M0174,Medicine 174,tablet,Desc 174,Manu 8
-M0175,Medicine 175,tablet,Desc 175,Manu 1
-M0176,Medicine 176,tablet,Desc 176,Manu 7
-M0177,Medicine 177,tablet,Desc 177,Manu 4
-M0178,Medicine 178,tablet,Desc 178,Manu 1
-M0179,Medicine 179,tablet,Desc 179,Manu 2
-M0180,Medicine 180,tablet,Desc 180,Manu 6
-M0181,Medicine 181,tablet,Desc 181,Manu 10
-M0182,Medicine 182,tablet,Desc 182,Manu 7
-M0183,Medicine 183,tablet,Desc 183,Manu 9
-M0184,Medicine 184,tablet,Desc 184,Manu 1
-M0185,Medicine 185,tablet,Desc 185,Manu 1
-M0186,Medicine 186,tablet,Desc 186,Manu 5
-M0187,Medicine 187,tablet,Desc 187,Manu 2
-M0188,Medicine 188,tablet,Desc 188,Manu 10
-M0189,Medicine 189,tablet,Desc 189,Manu 4
-M0190,Medicine 190,tablet,Desc 190,Manu 1
-M0191,Medicine 191,tablet,Desc 191,Manu 4
-M0192,Medicine 192,tablet,Desc 192,Manu 10
-M0193,Medicine 193,tablet,Desc 193,Manu 9
-M0194,Medicine 194,tablet,Desc 194,Manu 7
-M0195,Medicine 195,tablet,Desc 195,Manu 2
-M0196,Medicine 196,tablet,Desc 196,Manu 6
-M0197,Medicine 197,tablet,Desc 197,Manu 5
-M0198,Medicine 198,tablet,Desc 198,Manu 9
-M0199,Medicine 199,tablet,Desc 199,Manu 4
-M0200,Medicine 200,tablet,Desc 200,Manu 7
+﻿medicine_id,medicine_name,unit,description,manufacturer
+M0001,Simvastatin,tablet,Desc 1,Manu 3
+M0002,Paracetamol,tablet,Desc 2,Manu 6
+M0003,Ibuprofen,tablet,Desc 3,Manu 9
+M0004,Lisinopril,tablet,Desc 4,Manu 3
+M0005,Atorvastatin,tablet,Desc 5,Manu 5
+M0006,Lisinopril,tablet,Desc 6,Manu 3
+M0007,Aspirin,tablet,Desc 7,Manu 10
+M0008,Amoxicillin,tablet,Desc 8,Manu 10
+M0009,Lisinopril,tablet,Desc 9,Manu 4
+M0010,Paracetamol,tablet,Desc 10,Manu 1
+M0011,Ibuprofen,tablet,Desc 11,Manu 10
+M0012,Paracetamol,tablet,Desc 12,Manu 8
+M0013,Aspirin,tablet,Desc 13,Manu 2
+M0014,Paracetamol,tablet,Desc 14,Manu 4
+M0015,Aspirin,tablet,Desc 15,Manu 5
+M0016,Atorvastatin,tablet,Desc 16,Manu 7
+M0017,Simvastatin,tablet,Desc 17,Manu 5
+M0018,Omeprazole,tablet,Desc 18,Manu 5
+M0019,Simvastatin,tablet,Desc 19,Manu 8
+M0020,Aspirin,tablet,Desc 20,Manu 8
+M0021,Omeprazole,tablet,Desc 21,Manu 2
+M0022,Metformin,tablet,Desc 22,Manu 10
+M0023,Simvastatin,tablet,Desc 23,Manu 10
+M0024,Ibuprofen,tablet,Desc 24,Manu 9
+M0025,Amoxicillin,tablet,Desc 25,Manu 10
+M0026,Atorvastatin,tablet,Desc 26,Manu 10
+M0027,Lisinopril,tablet,Desc 27,Manu 3
+M0028,Amoxicillin,tablet,Desc 28,Manu 4
+M0029,Lisinopril,tablet,Desc 29,Manu 7
+M0030,Simvastatin,tablet,Desc 30,Manu 9
+M0031,Ibuprofen,tablet,Desc 31,Manu 4
+M0032,Paracetamol,tablet,Desc 32,Manu 10
+M0033,Metformin,tablet,Desc 33,Manu 8
+M0034,Metformin,tablet,Desc 34,Manu 3
+M0035,Lisinopril,tablet,Desc 35,Manu 6
+M0036,Ibuprofen,tablet,Desc 36,Manu 1
+M0037,Amoxicillin,tablet,Desc 37,Manu 2
+M0038,Ibuprofen,tablet,Desc 38,Manu 4
+M0039,Omeprazole,tablet,Desc 39,Manu 7
+M0040,Metformin,tablet,Desc 40,Manu 6
+M0041,Simvastatin,tablet,Desc 41,Manu 6
+M0042,Paracetamol,tablet,Desc 42,Manu 9
+M0043,Omeprazole,tablet,Desc 43,Manu 9
+M0044,Amoxicillin,tablet,Desc 44,Manu 1
+M0045,Aspirin,tablet,Desc 45,Manu 8
+M0046,Lisinopril,tablet,Desc 46,Manu 7
+M0047,Lisinopril,tablet,Desc 47,Manu 5
+M0048,Lisinopril,tablet,Desc 48,Manu 3
+M0049,Lisinopril,tablet,Desc 49,Manu 5
+M0050,Ibuprofen,tablet,Desc 50,Manu 1
+M0051,Ibuprofen,tablet,Desc 51,Manu 2
+M0052,Ibuprofen,tablet,Desc 52,Manu 6
+M0053,Metformin,tablet,Desc 53,Manu 8
+M0054,Aspirin,tablet,Desc 54,Manu 7
+M0055,Paracetamol,tablet,Desc 55,Manu 5
+M0056,Omeprazole,tablet,Desc 56,Manu 5
+M0057,Omeprazole,tablet,Desc 57,Manu 7
+M0058,Metformin,tablet,Desc 58,Manu 7
+M0059,Lisinopril,tablet,Desc 59,Manu 3
+M0060,Paracetamol,tablet,Desc 60,Manu 2
+M0061,Lisinopril,tablet,Desc 61,Manu 8
+M0062,Aspirin,tablet,Desc 62,Manu 3
+M0063,Omeprazole,tablet,Desc 63,Manu 5
+M0064,Amoxicillin,tablet,Desc 64,Manu 2
+M0065,Omeprazole,tablet,Desc 65,Manu 2
+M0066,Omeprazole,tablet,Desc 66,Manu 10
+M0067,Simvastatin,tablet,Desc 67,Manu 2
+M0068,Omeprazole,tablet,Desc 68,Manu 9
+M0069,Amoxicillin,tablet,Desc 69,Manu 7
+M0070,Paracetamol,tablet,Desc 70,Manu 8
+M0071,Metformin,tablet,Desc 71,Manu 3
+M0072,Amoxicillin,tablet,Desc 72,Manu 5
+M0073,Lisinopril,tablet,Desc 73,Manu 2
+M0074,Amoxicillin,tablet,Desc 74,Manu 10
+M0075,Omeprazole,tablet,Desc 75,Manu 7
+M0076,Simvastatin,tablet,Desc 76,Manu 4
+M0077,Ibuprofen,tablet,Desc 77,Manu 9
+M0078,Ibuprofen,tablet,Desc 78,Manu 8
+M0079,Metformin,tablet,Desc 79,Manu 4
+M0080,Paracetamol,tablet,Desc 80,Manu 1
+M0081,Metformin,tablet,Desc 81,Manu 4
+M0082,Omeprazole,tablet,Desc 82,Manu 6
+M0083,Ibuprofen,tablet,Desc 83,Manu 2
+M0084,Ibuprofen,tablet,Desc 84,Manu 5
+M0085,Amoxicillin,tablet,Desc 85,Manu 2
+M0086,Paracetamol,tablet,Desc 86,Manu 1
+M0087,Paracetamol,tablet,Desc 87,Manu 4
+M0088,Amoxicillin,tablet,Desc 88,Manu 1
+M0089,Amoxicillin,tablet,Desc 89,Manu 10
+M0090,Omeprazole,tablet,Desc 90,Manu 5
+M0091,Paracetamol,tablet,Desc 91,Manu 9
+M0092,Paracetamol,tablet,Desc 92,Manu 1
+M0093,Amoxicillin,tablet,Desc 93,Manu 4
+M0094,Aspirin,tablet,Desc 94,Manu 7
+M0095,Amoxicillin,tablet,Desc 95,Manu 2
+M0096,Paracetamol,tablet,Desc 96,Manu 4
+M0097,Amoxicillin,tablet,Desc 97,Manu 10
+M0098,Lisinopril,tablet,Desc 98,Manu 4
+M0099,Ibuprofen,tablet,Desc 99,Manu 2
+M0100,Paracetamol,tablet,Desc 100,Manu 4
+M0101,Amoxicillin,tablet,Desc 101,Manu 7
+M0102,Aspirin,tablet,Desc 102,Manu 6
+M0103,Omeprazole,tablet,Desc 103,Manu 10
+M0104,Atorvastatin,tablet,Desc 104,Manu 9
+M0105,Simvastatin,tablet,Desc 105,Manu 1
+M0106,Paracetamol,tablet,Desc 106,Manu 2
+M0107,Paracetamol,tablet,Desc 107,Manu 9
+M0108,Metformin,tablet,Desc 108,Manu 3
+M0109,Metformin,tablet,Desc 109,Manu 6
+M0110,Atorvastatin,tablet,Desc 110,Manu 6
+M0111,Amoxicillin,tablet,Desc 111,Manu 10
+M0112,Omeprazole,tablet,Desc 112,Manu 4
+M0113,Aspirin,tablet,Desc 113,Manu 3
+M0114,Amoxicillin,tablet,Desc 114,Manu 5
+M0115,Amoxicillin,tablet,Desc 115,Manu 6
+M0116,Atorvastatin,tablet,Desc 116,Manu 10
+M0117,Ibuprofen,tablet,Desc 117,Manu 7
+M0118,Atorvastatin,tablet,Desc 118,Manu 4
+M0119,Atorvastatin,tablet,Desc 119,Manu 10
+M0120,Aspirin,tablet,Desc 120,Manu 7
+M0121,Simvastatin,tablet,Desc 121,Manu 8
+M0122,Metformin,tablet,Desc 122,Manu 8
+M0123,Omeprazole,tablet,Desc 123,Manu 1
+M0124,Paracetamol,tablet,Desc 124,Manu 10
+M0125,Metformin,tablet,Desc 125,Manu 4
+M0126,Simvastatin,tablet,Desc 126,Manu 7
+M0127,Metformin,tablet,Desc 127,Manu 2
+M0128,Simvastatin,tablet,Desc 128,Manu 5
+M0129,Paracetamol,tablet,Desc 129,Manu 10
+M0130,Amoxicillin,tablet,Desc 130,Manu 6
+M0131,Omeprazole,tablet,Desc 131,Manu 7
+M0132,Paracetamol,tablet,Desc 132,Manu 3
+M0133,Aspirin,tablet,Desc 133,Manu 9
+M0134,Amoxicillin,tablet,Desc 134,Manu 8
+M0135,Simvastatin,tablet,Desc 135,Manu 6
+M0136,Ibuprofen,tablet,Desc 136,Manu 9
+M0137,Ibuprofen,tablet,Desc 137,Manu 2
+M0138,Amoxicillin,tablet,Desc 138,Manu 8
+M0139,Simvastatin,tablet,Desc 139,Manu 8
+M0140,Lisinopril,tablet,Desc 140,Manu 10
+M0141,Paracetamol,tablet,Desc 141,Manu 3
+M0142,Ibuprofen,tablet,Desc 142,Manu 1
+M0143,Lisinopril,tablet,Desc 143,Manu 6
+M0144,Paracetamol,tablet,Desc 144,Manu 1
+M0145,Simvastatin,tablet,Desc 145,Manu 3
+M0146,Metformin,tablet,Desc 146,Manu 9
+M0147,Metformin,tablet,Desc 147,Manu 2
+M0148,Ibuprofen,tablet,Desc 148,Manu 2
+M0149,Omeprazole,tablet,Desc 149,Manu 6
+M0150,Paracetamol,tablet,Desc 150,Manu 1
+M0151,Omeprazole,tablet,Desc 151,Manu 5
+M0152,Lisinopril,tablet,Desc 152,Manu 7
+M0153,Simvastatin,tablet,Desc 153,Manu 10
+M0154,Simvastatin,tablet,Desc 154,Manu 10
+M0155,Simvastatin,tablet,Desc 155,Manu 4
+M0156,Paracetamol,tablet,Desc 156,Manu 10
+M0157,Aspirin,tablet,Desc 157,Manu 1
+M0158,Amoxicillin,tablet,Desc 158,Manu 5
+M0159,Omeprazole,tablet,Desc 159,Manu 2
+M0160,Omeprazole,tablet,Desc 160,Manu 1
+M0161,Lisinopril,tablet,Desc 161,Manu 7
+M0162,Ibuprofen,tablet,Desc 162,Manu 1
+M0163,Lisinopril,tablet,Desc 163,Manu 3
+M0164,Atorvastatin,tablet,Desc 164,Manu 7
+M0165,Lisinopril,tablet,Desc 165,Manu 1
+M0166,Ibuprofen,tablet,Desc 166,Manu 4
+M0167,Ibuprofen,tablet,Desc 167,Manu 4
+M0168,Ibuprofen,tablet,Desc 168,Manu 2
+M0169,Amoxicillin,tablet,Desc 169,Manu 1
+M0170,Atorvastatin,tablet,Desc 170,Manu 4
+M0171,Simvastatin,tablet,Desc 171,Manu 3
+M0172,Ibuprofen,tablet,Desc 172,Manu 6
+M0173,Ibuprofen,tablet,Desc 173,Manu 9
+M0174,Atorvastatin,tablet,Desc 174,Manu 2
+M0175,Amoxicillin,tablet,Desc 175,Manu 2
+M0176,Lisinopril,tablet,Desc 176,Manu 1
+M0177,Ibuprofen,tablet,Desc 177,Manu 7
+M0178,Aspirin,tablet,Desc 178,Manu 9
+M0179,Atorvastatin,tablet,Desc 179,Manu 9
+M0180,Atorvastatin,tablet,Desc 180,Manu 2
+M0181,Simvastatin,tablet,Desc 181,Manu 7
+M0182,Ibuprofen,tablet,Desc 182,Manu 1
+M0183,Metformin,tablet,Desc 183,Manu 2
+M0184,Amoxicillin,tablet,Desc 184,Manu 2
+M0185,Simvastatin,tablet,Desc 185,Manu 6
+M0186,Ibuprofen,tablet,Desc 186,Manu 6
+M0187,Simvastatin,tablet,Desc 187,Manu 1
+M0188,Ibuprofen,tablet,Desc 188,Manu 8
+M0189,Lisinopril,tablet,Desc 189,Manu 8
+M0190,Paracetamol,tablet,Desc 190,Manu 3
+M0191,Metformin,tablet,Desc 191,Manu 10
+M0192,Atorvastatin,tablet,Desc 192,Manu 5
+M0193,Simvastatin,tablet,Desc 193,Manu 2
+M0194,Omeprazole,tablet,Desc 194,Manu 5
+M0195,Paracetamol,tablet,Desc 195,Manu 7
+M0196,Aspirin,tablet,Desc 196,Manu 10
+M0197,Paracetamol,tablet,Desc 197,Manu 6
+M0198,Atorvastatin,tablet,Desc 198,Manu 2
+M0199,Paracetamol,tablet,Desc 199,Manu 7
+M0200,Metformin,tablet,Desc 200,Manu 5
