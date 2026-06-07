@@ -10,9 +10,9 @@ public class BatchLot extends BaseEntity {
     private final String batchLotId;
     private final String medicineId;
     private final String branchId;
-    private int quantity;
+    private final int quantity;
     private final LocalDate expiryDate;
-    private int version;
+    private final int version;
 
     public BatchLot(String batchLotId, String medicineId, String branchId, int quantity, LocalDate expiryDate, int version) {
         this.batchLotId = batchLotId;
