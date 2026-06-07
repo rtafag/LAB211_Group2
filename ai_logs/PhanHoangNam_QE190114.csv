@@ -2,10 +2,10 @@ Sheet: 1. Metadata & Summary
 AI AUDIT LOG - METADATA & SUMMARY,,,,,
 ,,,,,
 STUDENT INFORMATION,,,,,
-Student Name:,,[Enter your name],,,
-Student ID:,,[Enter your ID],,,
+Student Name:,,Phan Hoang Nam,,,
+Student ID:,,QE190114,,,
 Course:,,"[e.g., LAB211, PRF192, ADY201m]",,,
-Assignment:,,"[e.g., Football Club Management]",,,
+Assignment:,,"Pharmacy Chain Simulation",,,
 ,,,,,
 AI USAGE SUMMARY,,,,,
 Total Prompts Used (all AI tools):,,"[e.g., ~150]",,,
@@ -31,13 +31,31 @@ Sheet: 2. Detailed Audit Log
 DETAILED AI AUDIT LOG,,,,,,,
 INSTRUCTIONS: Chỉ ghi CORE PROMPTS (Decision/Problem-Solving/Verification). Mỗi entry phải trả lời đầy đủ 4 câu hỏi trong Human Delta.,,,,,,,
 Entry #,Prompt Type,Stage/Component,Problem/Context,Prompt to AI,AI Response (Summary),Human Delta & Reflection,Evidence
-001,DECISION,Algorithms,Implementing a student ID search (exact match),"""I have a list of 5,000 students. Should I use a Binary Search Tree or a HashMap for O(1) search?""",AI suggested HashMap for O(1) average time complexity.,"Critical Thinking: While HashMap is O(1), it doesn't support ordered traversal. Contextualization: The project also requires printing a student list sorted by ID. Creative Synthesis: I decided to use a TreeMap (Red-Black Tree). Decision: Even though lookup is O(log n), it maintains order, which saves O(n log n) sorting time later.",Comparison table of search vs. sort time
-002,PROBLEM-SOLVING,Algorithms,Deleting a node from a Singly Linked List,"""How to delete a node in a Singly Linked List if I only have a pointer to that node?""",AI suggested copying the data from the next node to the current node and deleting the next one.,"Critical Thinking: This trick fails if the node to be deleted is the Last Node. Contextualization: My list frequently deletes tail nodes. Decision Ownership: I modified the logic to handle the tail case by traversing from the head, ensuring no memory leaks.",Code snippet highlighting the tail case fix
-003,VERIFICATION,Algorithms,Checking if a BST is balanced,"""Provide an algorithm to check if a Binary Tree is height-balanced.""",AI provided a top-down recursion that calls height() on every node.,Critical Thinking: This approach is O(n^2) because it recalculates height repeatedly. Creative Synthesis: I implemented a bottom-up approach that checks balance and height in one pass. Decision: Improved complexity from O(n^2) to O(n).,Big O analysis and execution time log
-[Add more...],,,,,,,
-,,,,,,,
-,,,,,,,
-,,,,,,,
+001,Knowledge Input,Project Documentation,Project Leaning for AI,"Ghi nhớ thông tin project này:
+FPT UNIVERSITY — LAB211
+ĐỀ TÀI THỰC HÀNH
+  Pharmacy Chain Simulation
+Hệ thống Mô phỏng Quản lý Chuỗi Nhà thuốc
+.
+. (Rút gọn)
+.
+Tên file: NHOM_XX_LAB211_Pharmacy.zip (ví dụ: NHOM_05_LAB211_Pharmacy.zip)
+README phải có: compile instructions, chạy DataGenerator, chạy Simulator với từng mechanism, đọc bảng kết quả
+Nộp qua FPT University Learning trước deadline được thông báo trên lớp
+Trễ 1 ngày: −10%  |  Trễ 2 ngày: −30%  |  Trễ ≥ 3 ngày: 0 điểm","Tôi đã đọc và ghi nhớ toàn bộ nội dung bạn vừa cung cấp liên quan đến đề
+ tài “Pharmacy Chain Simulation – Hệ thống Mô phỏng Quản lý Chuỗi Nhà 
+thuốc” cho môn LAB211 tại FPT University.","Critical Thinking: Người dùng cung cấp tài liệu chi tiết, đầy đủ về bối cảnh, vấn đề, giải pháp. AI chỉ ghi nhận mà không cần xử lý thêm",Project Document
+002,Analysis,Requirements,Phân tích đề bài bài toán pharmacy chain,"""Phân tích đề bài, phân tích ra công việc dữ liệu của tuần 1,2. đưa ra 3 race condition, luồng nghiệp vụ FEFO""","Cung cấp phân tích chi tiết: 1) phân tách 8 entity, use case, class 
+diagram draft; 2) DataGenerator specs (14.820 dòng, 60% PENDING, 20% 
+near-expiry); 3) 3 race condition kèm ví dụ real scenario; 4) giải thích
+ FEFO logic step-by-step","Critical Thinking:Đầy đủ, chuẩn xác. Hiểu rõ bối cảnh pharmacy thực tế → nền tảng tốt cho design. AI không nhầm giữa FIFO vs FEFO","Phân tích tuần 1-2, class diagram draft, FEFO explanation"
+003,Data Model,CSV Schema,Xác định 8 file CSV,"""Mô tả 8 file csv, các thông tin trong fie""","Chi tiết từng cột, datatype, ý nghĩa, highlight 3 file ""nóng"" (stocks, prescriptions, batch_lots) cần version field",Critical Thinking:hiểu rõ cấu trúc dữ liệu → chuẩn bị cho Entity class,8 CSV schema definitions
+004,Diagram Design,OOP Model,Thiết kế Class Diagram,"""Thiết kế Class Diagram chi tiết. Đầy đủ các entity,""","Cung cấp Class Diagram with BaseEntity, 8 Entity, CsvRepository<T>, multiplicity relationships",PlantUML có thể vẽ trực tiếp. Nhưng chưa show field/method chi tiết lúc này,UML diagrams (text + PlantUML)
+005,Diagram Analysis,UML Interpretation,Phân tích Class Diagram (ảnh 1),"""Phân tích class diagram này"" (ảnh 1)","Phân tích: BaseEntity → 8 entity kế thừa; Repository pattern với CsvRepository<T> generic; DispenseCalculator, StockAllocator tách riêng; Enum chuẩn hóa; mối quan hệ multiplicity","Chính xác. Nhận ra kiến trúc SRP (single responsibility), dễ mở rộng locking",Image #1 analysis
+006,Data Generation,DataGenerator,Yêu cầu sinh dữ liệu,"""DataGenerator.java: sinh ≥14.820 dòng, 60% PENDING, 20% near-expiry. Test round-trip""",Mô tả flow: sinh từng file theo specs; 60% prescriptions PENDING; 20% batch near-expiry; test parse/serialize,"Chỉ conceptual, chưa code. AI nên đề nghị code skeleton → mình yêu cầu chi tiết sau",DataGenerator requirements
+007,Implementation,Entity Classes,"Viết 8 Entity, Enum, BaseEntity, Unit Test","""Implement 8 Entity + Enum + BaseEntity + toCsvLine/fromCsvLine. Unit test deduct() & isExpired()""","Cung cấp code 14 file: BaseEntity, 2 Enum, 8 Entity, DispenseRecord, + 3 test file (StockTest, BatchLotTest, RoundTripTest) CHI TIẾT với method deduct(), isExpired(), CSV parse, getter/setter","Code production-ready. Mình hiểu rõ: 1) version 
+increments khi deduct; 2) isExpired() check expiryDate <= today; 3) 
+CSV round-trip phải chính xác. Phân chia 3 người dễ dàng.","Code Phần 1, 2, 3 (14 file .java)"
 ,,,,,,,
 ,,,,,,,
 ,,,,,,,
