@@ -1,8 +1,8 @@
 
+import java.time.LocalDate;
+
 import model.BatchLot;
 import model.Stock;
-
-import java.time.LocalDate;
 
 public class ModelTests {
 
