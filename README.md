@@ -45,7 +45,7 @@ Hệ thống mô phỏng quy trình quản lý chuỗi nhà thuốc với dữ l
 ├── ai_logs/
 │   ├── member1_ai_log.md
 │   └── ...
-│──test/
+│── test/
 └── README.md
 ```
 
