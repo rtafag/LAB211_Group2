@@ -10,9 +10,9 @@ public class BatchLot extends BaseEntity {
     private final String batchLotId;
     private final String medicineId;
     private final String branchId;
-    private final int quantity;
+    private int quantity;
     private final LocalDate expiryDate;
-    private final int version;
+    private int version;
 
     public BatchLot(String batchLotId, String medicineId, String branchId, int quantity, LocalDate expiryDate, int version) {
         this.batchLotId = batchLotId;
@@ -49,6 +49,21 @@ public class BatchLot extends BaseEntity {
 
     public boolean isExpired() {
         return expiryDate.isBefore(LocalDate.now());
+    }
+
+    /**
+     * Deduct quantity from this batch. Throws IllegalArgumentException for
+     * non-positive amounts, IllegalStateException when insufficient quantity.
+     */
+    public void deduct(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("amount must be positive");
+        }
+        if (amount > quantity) {
+            throw new IllegalStateException("insufficient batch quantity");
+        }
+        this.quantity -= amount;
+        this.version++;
     }
 
     @Override

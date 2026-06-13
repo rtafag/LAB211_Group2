@@ -16,18 +16,18 @@ public class DataGenerator {
     private static final Random rand = new Random();
     private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    private static final String[] FIRSTNAMES = { "Nguyễn", "Trần", "Lê", "Phạm", "Vũ", "Đặng", "Bùi", "Đỗ", "Hồ" };
-    private static final String[] MIDDLENAMES = { "Văn", "Thị", "Hữu", "Quang", "Minh", "Hoàng", "Anh" };
-    private static final String[] LASTNAMES = { "An", "Bình", "Cường", "Dũng", "Cao", "Nam", "Giang", "Hùng", "Yên",
-            "Phúc" };
-    private static final String[] MEDICINES = { "Paracetamol", "Amoxicillin", "Ibuprofen", "Metformin", "Aspirin",
-            "Lisinopril", "Atorvastatin", "Omeprazole", "Simvastatin" };
+    private static final String[] FIRSTNAMES = {"Nguyễn", "Trần", "Lê", "Phạm", "Vũ", "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô",
+        "Dương", "Lý", "Võ", "Đoàn", "Trịnh", "Phan", "Cao", "Chu", "Hà"};
+    private static final String[] MIDDLENAMES = {"Văn", "Thị", "Hữu", "Quang", "Minh", "Hoàng", "Anh"};
+    private static final String[] LASTNAMES = {"An", "Bình", "Cường", "Dũng", "Cao", "Nam", "Giang", "Hùng", "Yên",
+        "Phúc", "Thảo", "Lan", "Hương", "Mai", "Thu", "Hà", "Linh", "Trang"};
+    private static final String[] MEDICINES = {"Dietary supplement", "Vitamin supplements", "Multivitamin", "Mineral supplements", "Omega-3",
+        "Herbal supplements", "Collagen", "Probiotics", "Protein powder", "Fiber supplements", "Glucosamine", "Chondroitin", "Coenzyme Q10",};
 
     public static void main(String[] args) throws IOException {
         generateBranches();
         generateMedicines();
         generatePharmacists();
-        generateStocks();
         generateBatchLots();
         generatePrescriptions();
         generatePrescriptionItems();
@@ -67,7 +67,7 @@ public class DataGenerator {
 
     private static void generatePharmacists() throws IOException {
         try (BufferedWriter fw = openCsv("pharmacists.csv")) {
-            fw.write("pharmacist_id,name,branch_id,username,password_hash,role\n");
+            fw.write("pharmacist_id,pharmacistname,branch_id,username,password,role\n");
             for (int i = 1; i <= 100; i++) {
                 String fullName = String.format("%s %s %s",
                         FIRSTNAMES[rand.nextInt(FIRSTNAMES.length)],
@@ -76,23 +76,6 @@ public class DataGenerator {
                 fw.write(
                         String.format("P%03d,%s,B%03d,user%d,password123,STAFF\n", i, fullName, 1 + rand.nextInt(20),
                                 i));
-            }
-        }
-    }
-
-    private static void generateStocks() throws IOException {
-        try (BufferedWriter fw = openCsv("stocks.csv")) {
-            fw.write("stock_id,branch_id,medicine_id,quantity,version\n");
-            int id = 1;
-            for (int b = 1; b <= 20; b++) {
-                for (int m = 1; m <= 200; m += 10) { // 20x200/10 = 400
-                    fw.write(String.format("S%05d,B%03d,M%04d,%d,1\n", id++, b, m, 50 + rand.nextInt(150)));
-                }
-            }
-            // Fill up to 4000
-            for (; id <= 4000; id++) {
-                fw.write(String.format("S%05d,B%03d,M%04d,%d,1\n", id, 1 + rand.nextInt(20), 1 + rand.nextInt(200),
-                        10 + rand.nextInt(200)));
             }
         }
     }
@@ -109,14 +92,14 @@ public class DataGenerator {
                     expiry = LocalDate.now().plusDays(rand.nextInt(365) + 30).format(DATE_FMT); // 1-12 months
                 }
                 fw.write(String.format("BL%05d,M%04d,B%03d,%d,%s,1\n", i, 1 + rand.nextInt(200), 1 + rand.nextInt(20),
-                        10 + rand.nextInt(100), expiry));
+                        20 + rand.nextInt(31), expiry));
             }
         }
     }
 
     private static void generatePrescriptions() throws IOException {
         try (BufferedWriter fw = openCsv("prescriptions.csv")) {
-            fw.write("prescription_id,patient_name,patient_dob,created_date,expired_date,status,branch_id,version\n");
+            fw.write("prescription_id,patient_name,patient_birthday,created_date,expired_date,status,branch_id,version\n");
             int pending = (int) (2000 * 0.6);
             for (int i = 1; i <= 2000; i++) {
                 String status = i <= pending ? "PENDING" : "DISPENSED";
