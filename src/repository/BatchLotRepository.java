@@ -28,7 +28,7 @@ public class BatchLotRepository extends CsvRepository<BatchLot> {
 
     @Override
     protected String getHeader() {
-        return "batch_lot_id,medicine_id,branch_id,quantity,manufacture_date,expiry_date,version";
+        return "batch_lot_id,medicine_id,branch_id,quantity_boxes,manufacture_date,expiry_date,version";
     }
 
     public BatchLot findBestLot(String medicineId) {

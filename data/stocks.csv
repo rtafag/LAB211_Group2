@@ -1,4 +1,4 @@
-﻿stock_id,branch_id,medicine_id,quantity,version
+﻿stock_id,branch_id,medicine_id,quantity_boxes,version
 S00001,B001,M0001,155,1
 S00002,B001,M0011,167,1
 S00003,B001,M0021,136,1

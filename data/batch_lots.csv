@@ -1,4 +1,4 @@
-﻿batch_lot_id,medicine_id,branch_id,quantity,expiry_date,version
+﻿batch_lot_id,medicine_id,branch_id,quantity_boxes,expiry_date,version
 BL00001,M0047,B019,50,2026-06-21,1
 BL00002,M0136,B019,29,2026-06-15,1
 BL00003,M0157,B010,28,2026-06-18,1

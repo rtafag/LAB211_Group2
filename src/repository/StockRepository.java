@@ -35,24 +35,24 @@ public class StockRepository extends CsvRepository<Stock> {
 
     @Override
     protected String getHeader() {
-        return "stock_id,branch_id,medicine_id,quantity,version";
+        return "stock_id,branch_id,medicine_id,quantity_boxes,version";
     }
 
-    public void deductWithSync(String medicineId, int qty) {
+    public void deductWithSync(String medicineId, int qtyBoxes) {
         synchronized (STOCK_LOCK) {
             List<Stock> stocks = readAll(fileName);
             Stock stock = findStock(stocks, medicineId);
-            stock.deduct(qty);
+            stock.deduct(qtyBoxes);
             writeAll(fileName, stocks);
         }
     }
 
-    public void deductWithOptimistic(String medicineId, int qty) {
+    public void deductWithOptimistic(String medicineId, int qtyBoxes) {
         for (int attempt = 0; attempt < 5; attempt++) {
             List<Stock> stocks = readAll(fileName);
             Stock stock = findStock(stocks, medicineId);
             int expectedVersion = stock.getVersion();
-            stock.deduct(qty);
+            stock.deduct(qtyBoxes);
 
             List<Stock> latest = readAll(fileName);
             Stock latestStock = findStock(latest, medicineId);
@@ -64,7 +64,7 @@ public class StockRepository extends CsvRepository<Stock> {
         throw new IllegalStateException("Concurrent stock update detected for medicine " + medicineId);
     }
 
-    public void deductWithFileLock(String medicineId, int qty) {
+    public void deductWithFileLock(String medicineId, int qtyBoxes) {
         Path path = Paths.get(fileName);
         try (RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw");
                 FileChannel channel = file.getChannel()) {
@@ -72,7 +72,7 @@ public class StockRepository extends CsvRepository<Stock> {
             try {
                 List<Stock> stocks = readAll(fileName);
                 Stock stock = findStock(stocks, medicineId);
-                stock.deduct(qty);
+                stock.deduct(qtyBoxes);
                 writeAll(fileName, stocks);
             } finally {
                 lock.release();
