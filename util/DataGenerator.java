@@ -20,8 +20,8 @@ public class DataGenerator {
     private static final String[] MIDDLENAMES = { "Văn", "Thị", "Hữu", "Quang", "Minh", "Hoàng", "Anh" };
     private static final String[] LASTNAMES = { "An", "Bình", "Cường", "Dũng", "Cao", "Nam", "Giang", "Hùng", "Yên",
             "Phúc" };
-    private static final String[] MEDICINES = { "Paracetamol", "Amoxicillin", "Ibuprofen", "Metformin", "Aspirin",
-            "Lisinopril", "Atorvastatin", "Omeprazole", "Simvastatin" };
+    private static final String[] MEDICINES = { "Vitamin C", "Omega-3", "Collagen", "BCAA", "Glucosamine",
+            "Probiotic", "Vitamin D3", "Lutein", "Maca", "Milk Thistle" };
 
     public static void main(String[] args) throws IOException {
         generateBranches();
@@ -59,8 +59,8 @@ public class DataGenerator {
         try (BufferedWriter fw = openCsv("medicines.csv")) {
             fw.write("medicine_id,medicine_name,unit,description,manufacturer\n");
             for (int i = 1; i <= 200; i++) {
-                fw.write(String.format("M%04d,%s,tablet,Desc %d,Manu %d\n", i,
-                        MEDICINES[rand.nextInt(MEDICINES.length)], i, 1 + rand.nextInt(10)));
+                fw.write(String.format("M%04d,%s,box,Functional Food,Manu %d\n", i,
+                        MEDICINES[rand.nextInt(MEDICINES.length)], 1 + rand.nextInt(10)));
             }
         }
     }
@@ -99,17 +99,18 @@ public class DataGenerator {
 
     private static void generateBatchLots() throws IOException {
         try (BufferedWriter fw = openCsv("batch_lots.csv")) {
-            fw.write("batch_lot_id,medicine_id,branch_id,quantity,expiry_date,version\n");
+            fw.write("batch_lot_id,medicine_id,branch_id,quantity,manufacture_date,expiry_date,version\n");
             int nearExpiry = (int) (2000 * 0.2);
             for (int i = 1; i <= 2000; i++) {
+                LocalDate manufactureDate = LocalDate.now().minusDays(rand.nextInt(180) + 30);
                 String expiry;
                 if (i <= nearExpiry) {
-                    expiry = LocalDate.now().plusDays(rand.nextInt(10) + 1).format(DATE_FMT); // 1-10 days
+                    expiry = manufactureDate.plusDays(rand.nextInt(10) + 1).format(DATE_FMT); // 1-10 days
                 } else {
-                    expiry = LocalDate.now().plusDays(rand.nextInt(365) + 30).format(DATE_FMT); // 1-12 months
+                    expiry = manufactureDate.plusDays(rand.nextInt(365) + 30).format(DATE_FMT); // 1-12 months
                 }
-                fw.write(String.format("BL%05d,M%04d,B%03d,%d,%s,1\n", i, 1 + rand.nextInt(200), 1 + rand.nextInt(20),
-                        10 + rand.nextInt(100), expiry));
+                fw.write(String.format("BL%05d,M%04d,B%03d,%d,%s,%s,1\n", i, 1 + rand.nextInt(200),
+                        1 + rand.nextInt(20), 10 + rand.nextInt(100), manufactureDate.format(DATE_FMT), expiry));
             }
         }
     }

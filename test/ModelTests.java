@@ -31,10 +31,11 @@ public class ModelTests {
             // expected
         }
 
-        // Test BatchLot.isExpired
-        BatchLot past = new BatchLot("BL00001", "M0001", "B001", 10, LocalDate.now().minusDays(1), 1);
-        BatchLot today = new BatchLot("BL00002", "M0002", "B001", 10, LocalDate.now(), 1);
-        BatchLot future = new BatchLot("BL00003", "M0003", "B001", 10, LocalDate.now().plusDays(1), 1);
+        // Test BatchLot.isExpired and manufacture date
+        LocalDate manufactureDate = LocalDate.now().minusDays(30);
+        BatchLot past = new BatchLot("BL00001", "M0001", "B001", 10, manufactureDate, LocalDate.now().minusDays(1), 1);
+        BatchLot today = new BatchLot("BL00002", "M0002", "B001", 10, manufactureDate, LocalDate.now(), 1);
+        BatchLot future = new BatchLot("BL00003", "M0003", "B001", 10, manufactureDate, LocalDate.now().plusDays(1), 1);
 
         if (!past.isExpired()) {
             System.err.println("FAIL: past batch should be expired");

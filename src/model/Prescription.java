@@ -16,7 +16,8 @@ public class Prescription extends BaseEntity {
     private final String branchId;
     private final int version;
 
-    public Prescription(String prescriptionId, String patientName, LocalDate patientDob, LocalDate createdDate, LocalDate expiredDate, PrescriptionStatus status, String branchId, int version) {
+    public Prescription(String prescriptionId, String patientName, LocalDate patientDob, LocalDate createdDate,
+            LocalDate expiredDate, PrescriptionStatus status, String branchId, int version) {
         this.prescriptionId = prescriptionId;
         this.patientName = patientName;
         this.patientDob = patientDob;
@@ -25,6 +26,38 @@ public class Prescription extends BaseEntity {
         this.status = status;
         this.branchId = branchId;
         this.version = version;
+    }
+
+    public String getPrescriptionId() {
+        return prescriptionId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public LocalDate getPatientDob() {
+        return patientDob;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDate getExpiredDate() {
+        return expiredDate;
+    }
+
+    public PrescriptionStatus getStatus() {
+        return status;
+    }
+
+    public String getBranchId() {
+        return branchId;
+    }
+
+    public int getVersion() {
+        return version;
     }
 
     @Override
@@ -37,12 +70,12 @@ public class Prescription extends BaseEntity {
                 expiredDate.format(F),
                 status.name(),
                 branchId,
-                String.valueOf(version)
-        );
+                String.valueOf(version));
     }
 
     public static Prescription fromCsvLine(String line) {
         String[] p = line.split(",", -1);
-        return new Prescription(p[0], p[1], LocalDate.parse(p[2], F), LocalDate.parse(p[3], F), LocalDate.parse(p[4], F), PrescriptionStatus.valueOf(p[5]), p[6], Integer.parseInt(p[7]));
+        return new Prescription(p[0], p[1], LocalDate.parse(p[2], F), LocalDate.parse(p[3], F),
+                LocalDate.parse(p[4], F), PrescriptionStatus.valueOf(p[5]), p[6], Integer.parseInt(p[7]));
     }
 }
