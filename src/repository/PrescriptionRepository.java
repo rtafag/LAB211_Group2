@@ -6,6 +6,12 @@ import model.Prescription;
 import model.PrescriptionStatus;
 
 public class PrescriptionRepository extends CsvRepository<Prescription> {
+    public static class PrescriptionAlreadyDispensedException extends Exception {
+        public PrescriptionAlreadyDispensedException(String message) {
+            super(message);
+        }
+    }
+
     private static final Object PRESCRIPTION_LOCK = new Object();
 
     private final String fileName;

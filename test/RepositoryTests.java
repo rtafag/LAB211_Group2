@@ -8,7 +8,6 @@ import model.Prescription;
 import model.PrescriptionStatus;
 import model.Stock;
 import repository.BatchLotRepository;
-import repository.PrescriptionAlreadyDispensedException;
 import repository.PrescriptionRepository;
 import repository.StockRepository;
 
@@ -44,7 +43,7 @@ public class RepositoryTests {
             prescriptionRepo.markDispensed("PR001");
             System.err.println("FAIL: second dispense should throw PrescriptionAlreadyDispensedException");
             ok = false;
-        } catch (PrescriptionAlreadyDispensedException expected) {
+        } catch (PrescriptionRepository.PrescriptionAlreadyDispensedException expected) {
             // expected
         }
 
@@ -71,7 +70,7 @@ public class RepositoryTests {
                     synchronized (System.out) {
                         successCount[0]++;
                     }
-                } catch (PrescriptionAlreadyDispensedException ex) {
+                } catch (PrescriptionRepository.PrescriptionAlreadyDispensedException ex) {
                     synchronized (System.out) {
                         failureCount[0]++;
                     }

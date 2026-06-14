@@ -10,23 +10,15 @@ public class BatchLot extends BaseEntity {
     private final String batchLotId;
     private final String medicineId;
     private final String branchId;
-    private final int quantity;
-    private final LocalDate manufactureDate;
+    private int quantity;
     private final LocalDate expiryDate;
-    private final int version;
+    private int version;
 
-    public BatchLot(String batchLotId, String medicineId, String branchId, int quantity, LocalDate expiryDate,
-            int version) {
-        this(batchLotId, medicineId, branchId, quantity, expiryDate.minusDays(30), expiryDate, version);
-    }
-
-    public BatchLot(String batchLotId, String medicineId, String branchId, int quantity, LocalDate manufactureDate,
-            LocalDate expiryDate, int version) {
+    public BatchLot(String batchLotId, String medicineId, String branchId, int quantity, LocalDate expiryDate, int version) {
         this.batchLotId = batchLotId;
         this.medicineId = medicineId;
         this.branchId = branchId;
         this.quantity = quantity;
-        this.manufactureDate = manufactureDate;
         this.expiryDate = expiryDate;
         this.version = version;
     }
@@ -47,10 +39,6 @@ public class BatchLot extends BaseEntity {
         return quantity;
     }
 
-    public LocalDate getManufactureDate() {
-        return manufactureDate;
-    }
-
     public LocalDate getExpiryDate() {
         return expiryDate;
     }
@@ -63,16 +51,29 @@ public class BatchLot extends BaseEntity {
         return expiryDate.isBefore(LocalDate.now());
     }
 
+    /**
+     * Deduct quantity from this batch. Throws IllegalArgumentException for
+     * non-positive amounts, IllegalStateException when insufficient quantity.
+     */
+    public void deduct(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("amount must be positive");
+        }
+        if (amount > quantity) {
+            throw new IllegalStateException("insufficient batch quantity");
+        }
+        this.quantity -= amount;
+        this.version++;
+    }
+
     @Override
     public String toCsvLine() {
-        return String.join(",", batchLotId, medicineId, branchId, String.valueOf(quantity), manufactureDate.format(F),
-                expiryDate.format(F), String.valueOf(version));
+        return String.join(",", batchLotId, medicineId, branchId, String.valueOf(quantity), expiryDate.format(F), String.valueOf(version));
     }
 
     public static BatchLot fromCsvLine(String line) {
         String[] p = line.split(",", -1);
-        return new BatchLot(p[0], p[1], p[2], Integer.parseInt(p[3]), LocalDate.parse(p[4], F),
-                LocalDate.parse(p[5], F), Integer.parseInt(p[6]));
+        return new BatchLot(p[0], p[1], p[2], Integer.parseInt(p[3]), LocalDate.parse(p[4], F), Integer.parseInt(p[5]));
     }
 
     @Override
@@ -88,7 +89,6 @@ public class BatchLot extends BaseEntity {
                 && medicineId.equals(b.medicineId)
                 && branchId.equals(b.branchId)
                 && quantity == b.quantity
-                && manufactureDate.equals(b.manufactureDate)
                 && expiryDate.equals(b.expiryDate)
                 && version == b.version;
     }
@@ -99,7 +99,6 @@ public class BatchLot extends BaseEntity {
         r = 31 * r + medicineId.hashCode();
         r = 31 * r + branchId.hashCode();
         r = 31 * r + Integer.hashCode(quantity);
-        r = 31 * r + manufactureDate.hashCode();
         r = 31 * r + expiryDate.hashCode();
         r = 31 * r + Integer.hashCode(version);
         return r;

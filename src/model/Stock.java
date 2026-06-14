@@ -1,7 +1,6 @@
 package model;
 
 public class Stock extends BaseEntity {
-
     private final String stockId;
     private final String branchId;
     private final String medicineId;
@@ -36,10 +35,6 @@ public class Stock extends BaseEntity {
         return version;
     }
 
-    /**
-     * Deduct quantity from stock. Throws IllegalArgumentException for
-     * non-positive amounts, IllegalStateException when insufficient quantity.
-     */
     public void deduct(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("amount must be positive");
