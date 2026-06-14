@@ -16,13 +16,16 @@ public class DataGenerator {
     private static final Random rand = new Random();
     private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    private static final String[] FIRSTNAMES = {"Nguyễn", "Trần", "Lê", "Phạm", "Vũ", "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô",
-        "Dương", "Lý", "Võ", "Đoàn", "Trịnh", "Phan", "Cao", "Chu", "Hà"};
-    private static final String[] MIDDLENAMES = {"Văn", "Thị", "Hữu", "Quang", "Minh", "Hoàng", "Anh"};
-    private static final String[] LASTNAMES = {"An", "Bình", "Cường", "Dũng", "Cao", "Nam", "Giang", "Hùng", "Yên",
-        "Phúc", "Thảo", "Lan", "Hương", "Mai", "Thu", "Hà", "Linh", "Trang"};
-    private static final String[] MEDICINES = {"Dietary supplement", "Vitamin supplements", "Multivitamin", "Mineral supplements", "Omega-3",
-        "Herbal supplements", "Collagen", "Probiotics", "Protein powder", "Fiber supplements", "Glucosamine", "Chondroitin", "Coenzyme Q10",};
+    private static final String[] FIRSTNAMES = { "Nguyễn", "Trần", "Lê", "Phạm", "Vũ", "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô",
+            "Dương", "Lý", "Võ", "Đoàn", "Trịnh", "Phan", "Cao", "Chu", "Hà" };
+    private static final String[] MIDDLENAMES = { "Văn", "Thị", "Hữu", "Quang", "Minh", "Hoàng", "Anh" };
+    private static final String[] LASTNAMES = { "An", "Bình", "Cường", "Dũng", "Cao", "Nam", "Giang", "Hùng", "Yên",
+            "Phúc", "Thảo", "Lan", "Hương", "Mai", "Thu", "Hà", "Linh", "Trang" };
+    private static final String[] MEDICINES = { "Dietary supplement", "Vitamin supplements", "Multivitamin",
+            "Mineral supplements", "Omega-3",
+            "Herbal supplements", "Collagen", "Probiotics", "Protein powder", "Fiber supplements", "Glucosamine",
+            "Chondroitin", "Coenzyme Q10", };
+    private static final String[] UNITS = { "box", "bottle", "pack", "tube" };
 
     public static void main(String[] args) throws IOException {
         generateBranches();
@@ -57,10 +60,12 @@ public class DataGenerator {
 
     private static void generateMedicines() throws IOException {
         try (BufferedWriter fw = openCsv("medicines.csv")) {
-            fw.write("medicine_id,medicine_name,unit,description,manufacturer\n");
+            fw.write("medicine_id,medicine_name,unit,units_per_box,description,manufacturer\n");
             for (int i = 1; i <= 200; i++) {
-                fw.write(String.format("M%04d,%s,tablet,Desc %d,Manu %d\n", i,
-                        MEDICINES[rand.nextInt(MEDICINES.length)], i, 1 + rand.nextInt(10)));
+                String unit = UNITS[rand.nextInt(UNITS.length)];
+                int unitsPerBox = unit.equals("bottle") ? 6 + rand.nextInt(5) : 10 + rand.nextInt(6);
+                fw.write(String.format("M%04d,%s,%s,%d,Desc %d,Manu %d\n", i,
+                        MEDICINES[rand.nextInt(MEDICINES.length)], unit, unitsPerBox, i, 1 + rand.nextInt(10)));
             }
         }
     }
@@ -99,7 +104,8 @@ public class DataGenerator {
 
     private static void generatePrescriptions() throws IOException {
         try (BufferedWriter fw = openCsv("prescriptions.csv")) {
-            fw.write("prescription_id,patient_name,patient_birthday,created_date,expired_date,status,branch_id,version\n");
+            fw.write(
+                    "prescription_id,patient_name,patient_birthday,created_date,expired_date,status,branch_id,version\n");
             int pending = (int) (2000 * 0.6);
             for (int i = 1; i <= 2000; i++) {
                 String status = i <= pending ? "PENDING" : "DISPENSED";
