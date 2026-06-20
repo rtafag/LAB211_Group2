@@ -3,7 +3,6 @@ package repository;
 import java.util.List;
 
 import model.Prescription;
-import model.PrescriptionStatus;
 
 public class PrescriptionRepository extends CsvRepository<Prescription> {
     public static class PrescriptionAlreadyDispensedException extends Exception {
@@ -47,7 +46,7 @@ public class PrescriptionRepository extends CsvRepository<Prescription> {
                 if (!prescriptionId.equals(current.getPrescriptionId())) {
                     continue;
                 }
-                if (current.getStatus() == PrescriptionStatus.DISPENSED) {
+                if ("DISPENSED".equals(current.getStatus())) {
                     throw new PrescriptionAlreadyDispensedException(
                             "Prescription " + prescriptionId + " is already dispensed");
                 }
@@ -58,7 +57,7 @@ public class PrescriptionRepository extends CsvRepository<Prescription> {
                         current.getPatientDob(),
                         current.getCreatedDate(),
                         current.getExpiredDate(),
-                        PrescriptionStatus.DISPENSED,
+                        "DISPENSED",
                         current.getBranchId(),
                         current.getVersion() + 1);
                 prescriptions.set(i, updated);

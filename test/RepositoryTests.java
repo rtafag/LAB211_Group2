@@ -1,11 +1,9 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.List;
 
 import model.BatchLot;
 import model.Prescription;
-import model.PrescriptionStatus;
 import model.Stock;
 import repository.BatchLotRepository;
 import repository.PrescriptionRepository;
