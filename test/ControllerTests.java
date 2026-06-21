@@ -64,7 +64,6 @@ public class ControllerTests {
         DispenseController dispenseController = new DispenseController(presRepo, stockRepo, lotRepo, itemRepo,
                 recordRepo);
         dispenseController.processDispense("PR001", "P001");
-
         Prescription updated = presRepo.findById("PR001");
         assertNotNull(updated);
         assertEquals("DISPENSED", updated.getStatus());
