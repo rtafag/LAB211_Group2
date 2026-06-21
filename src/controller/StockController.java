@@ -1,4 +1,4 @@
-﻿package controller;
+package controller;
 
 import repository.StockRepository;
 import model.Stock;
@@ -14,14 +14,14 @@ public class StockController {
     public void getStockByBranch(String branchId) {
         List<Stock> stocks = stockRepo.readAll("data/stocks.csv");
         stocks.stream()
-              .filter(s -> s.getBranchId().equals(branchId))
-              .forEach(s -> System.out.println(s.toCsvLine()));
+                .filter(s -> s.getBranchId().equals(branchId))
+                .forEach(s -> System.out.println(s.toCsvLine()));
     }
 
     public void getLowStockAlert() {
         List<Stock> stocks = stockRepo.readAll("data/stocks.csv");
         stocks.stream()
-              .filter(s -> s.getQuantity() < 5)
-              .forEach(s -> System.out.println("Cảnh báo: " + s.getMedicineId() + " sắp hết hàng"));
+                .filter(s -> s.getQuantity() < 5)
+                .forEach(s -> System.out.println("Cảnh báo: " + s.getMedicineId() + " sắp hết hàng"));
     }
 }

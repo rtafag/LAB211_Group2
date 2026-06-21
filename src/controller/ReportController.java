@@ -1,4 +1,4 @@
-﻿package controller;
+package controller;
 
 import repository.*;
 import model.*;
@@ -23,13 +23,13 @@ public class ReportController {
         System.out.println("===== ĐƠN THUỐC ĐÃ XUẤT =====");
         List<Prescription> pres = presRepo.readAll("data/prescriptions.csv");
         pres.stream()
-            .filter(p -> "DISPENSED".equals(p.getStatus()))
-            .forEach(p -> System.out.println(p.toCsvLine()));
+                .filter(p -> "DISPENSED".equals(p.getStatus()))
+                .forEach(p -> System.out.println(p.toCsvLine()));
 
         System.out.println("===== LÔ THUỐC SẮP HẾT HẠN =====");
         List<BatchLot> lots = lotRepo.readAll("data/batch_lots.csv");
         lots.stream()
-            .filter(l -> l.isNearExpiry())
-            .forEach(l -> System.out.println("Cảnh báo: " + l.getBatchLotId()));
+                .filter(l -> l.isNearExpiry())
+                .forEach(l -> System.out.println("Cảnh báo: " + l.getBatchLotId()));
     }
 }
