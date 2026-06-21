@@ -86,6 +86,18 @@ public class StockRepository extends CsvRepository<Stock> {
         }
     }
 
+    public boolean hasSufficientStock(String branchId, String medicineId, int requiredQty) {
+        if (requiredQty <= 0) {
+            return false;
+        }
+
+        return readAll(fileName).stream()
+                .filter(stock -> medicineId.equals(stock.getMedicineId()))
+                .filter(stock -> branchId == null || branchId.equals(stock.getBranchId()))
+                .mapToInt(Stock::getQuantity)
+                .sum() >= requiredQty;
+    }
+
     private Stock findStock(List<Stock> stocks, String medicineId) {
         return findStock(stocks, null, medicineId);
     }

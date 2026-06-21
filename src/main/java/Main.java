@@ -27,7 +27,7 @@ public class Main {
                 recordRepo);
         StockController stockController = new StockController(stockRepo);
         ReportController reportController = new ReportController(stockRepo, presRepo, lotRepo);
-        PrescriptionController prescriptionController = new PrescriptionController(presRepo);
+        PrescriptionController prescriptionController = new PrescriptionController(presRepo, itemRepo);
 
         MainView view = new MainView(
                 loginController,

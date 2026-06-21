@@ -14,6 +14,7 @@ import repository.PrescriptionRepository;
 import repository.StockRepository;
 
 public class DispenseController {
+
     private final PrescriptionRepository presRepo;
     private final StockRepository stockRepo;
     private final BatchLotRepository lotRepo;
@@ -29,7 +30,7 @@ public class DispenseController {
         this.recordRepo = r;
     }
 
-    public void processDispense(String prescriptionId, String pharmacistId) {
+    public String processDispense(String prescriptionId, String pharmacistId) {
         Prescription prescription = presRepo.findById(prescriptionId);
         if (prescription == null) {
             throw new IllegalArgumentException("Prescription not found: " + prescriptionId);
@@ -38,20 +39,39 @@ public class DispenseController {
             throw new IllegalStateException("Prescription " + prescriptionId + " is already dispensed");
         }
 
-        List<PrescriptionItem> items = itemRepo.findByPrescriptionId(prescriptionId);
-        if (items.isEmpty()) {
-            throw new IllegalArgumentException("No items found for prescription " + prescriptionId);
+        if (!"PENDING".equals(prescription.getStatus())) {
+            throw new IllegalStateException("Prescription " + prescriptionId + " is not in PENDING status");
         }
 
+        List<PrescriptionItem> items = itemRepo.findByPrescriptionId(prescriptionId);
+
         String branchId = prescription.getBranchId();
+        boolean canDeductInventory = !items.isEmpty();
+        String inventoryNote = "";
+
         for (PrescriptionItem item : items) {
-            stockRepo.deductWithSync(branchId, item.getMedicineId(), item.getQuantity());
-            BatchLot bestLot = lotRepo.findBestLot(item.getMedicineId(), branchId);
-            if (bestLot == null) {
-                throw new IllegalStateException("No valid batch lot for medicine " + item.getMedicineId()
-                        + " in branch " + branchId);
+            if (!stockRepo.hasSufficientStock(branchId, item.getMedicineId(), item.getQuantity())) {
+                canDeductInventory = false;
+                inventoryNote = "No sufficient stock for medicine " + item.getMedicineId() + " in branch " + branchId;
+                break;
             }
-            lotRepo.consumeFromLot(bestLot.getBatchLotId(), item.getQuantity());
+
+            BatchLot bestLot = lotRepo.findBestLot(item.getMedicineId(), branchId);
+            if (bestLot == null || bestLot.getQuantity() < item.getQuantity()) {
+                canDeductInventory = false;
+                inventoryNote = "No valid batch lot for medicine " + item.getMedicineId() + " in branch " + branchId;
+                break;
+            }
+        }
+
+        if (canDeductInventory) {
+            for (PrescriptionItem item : items) {
+                stockRepo.deductWithSync(branchId, item.getMedicineId(), item.getQuantity());
+                BatchLot bestLot = lotRepo.findBestLot(item.getMedicineId(), branchId);
+                lotRepo.consumeFromLot(bestLot.getBatchLotId(), item.getQuantity());
+            }
+        } else if (items.isEmpty()) {
+            inventoryNote = "No items found for this prescription";
         }
 
         try {
@@ -63,6 +83,11 @@ public class DispenseController {
         DispenseRecord record = new DispenseRecord(generateRecordId(), prescriptionId, pharmacistId,
                 LocalDate.now(), branchId);
         recordRepo.save(record);
+
+        if (canDeductInventory) {
+            return "Prescription " + prescriptionId + " dispensed successfully.";
+        }
+        return "Prescription " + prescriptionId + " confirmed as DISPENSED. Inventory was not deducted: " + inventoryNote;
     }
 
     private String generateRecordId() {

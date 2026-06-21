@@ -73,6 +73,22 @@ public class PrescriptionRepository extends CsvRepository<Prescription> {
         }
     }
 
+    public void update(Prescription updatedPrescription) {
+        synchronized (PRESCRIPTION_LOCK) {
+            List<Prescription> prescriptions = readAll(fileName);
+            for (int i = 0; i < prescriptions.size(); i++) {
+                Prescription current = prescriptions.get(i);
+                if (!updatedPrescription.getPrescriptionId().equals(current.getPrescriptionId())) {
+                    continue;
+                }
+                prescriptions.set(i, updatedPrescription);
+                writeAll(fileName, prescriptions);
+                return;
+            }
+            throw new IllegalArgumentException("Prescription not found: " + updatedPrescription.getPrescriptionId());
+        }
+    }
+
     public void markDispensed(String prescriptionId) throws PrescriptionAlreadyDispensedException {
         synchronized (PRESCRIPTION_LOCK) {
             List<Prescription> prescriptions = readAll(fileName);
