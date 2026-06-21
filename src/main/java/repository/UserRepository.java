@@ -1,9 +1,11 @@
 package repository;
 
 import java.util.List;
+
 import model.User;
 
 public class UserRepository extends CsvRepository<User> {
+
     private final String fileName;
 
     public UserRepository() {
@@ -26,13 +28,13 @@ public class UserRepository extends CsvRepository<User> {
 
     @Override
     protected String getHeader() {
-        return "user_id,password,role";
+        return "phone_number,password,role";
     }
 
-    public User findById(String id) {
+    public User findByPhoneNumber(String phoneNumber) {
         List<User> users = readAll(fileName);
         return users.stream()
-                .filter(u -> u.getId().equals(id))
+                .filter(u -> u.getPhoneNumber().equals(phoneNumber))
                 .findFirst()
                 .orElse(null);
     }

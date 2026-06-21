@@ -11,11 +11,11 @@ public class LoginController {
         this.userRepo = repo;
     }
 
-    public User login(String id, String password) {
-        User u = userRepo.findById(id);
+    public User login(String phoneNumber, String password) {
+        User u = userRepo.findByPhoneNumber(phoneNumber);
         if (u != null && u.getPassword().equals(password)) {
             return u;
         }
-        throw new IllegalArgumentException("Wrong ID or password!");
+        throw new IllegalArgumentException("Wrong phone number or password!");
     }
 }

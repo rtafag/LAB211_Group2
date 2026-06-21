@@ -11,6 +11,7 @@ import java.util.List;
 import model.Stock;
 
 public class StockRepository extends CsvRepository<Stock> {
+
     private static final Object STOCK_LOCK = new Object();
 
     private final String fileName;
@@ -70,8 +71,7 @@ public class StockRepository extends CsvRepository<Stock> {
 
     public void deductWithFileLock(String medicineId, int qtyBoxes) {
         Path path = Paths.get(fileName);
-        try (RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw");
-                FileChannel channel = file.getChannel()) {
+        try (RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw"); FileChannel channel = file.getChannel()) {
             FileLock lock = channel.lock();
             try {
                 List<Stock> stocks = readAll(fileName);
@@ -96,6 +96,6 @@ public class StockRepository extends CsvRepository<Stock> {
                 .filter(stock -> branchId == null || branchId.equals(stock.getBranchId()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No stock found for medicine " + medicineId
-                        + (branchId != null ? " in branch " + branchId : "")));
+                + (branchId != null ? " in branch " + branchId : "")));
     }
 }

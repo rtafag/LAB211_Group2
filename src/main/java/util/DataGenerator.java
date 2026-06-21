@@ -25,7 +25,7 @@ public class DataGenerator {
         "Mineral supplements", "Omega-3",
         "Herbal supplements", "Collagen", "Probiotics", "Protein powder", "Fiber supplements", "Glucosamine",
         "Chondroitin", "Coenzyme Q10",};
-    private static final String[] UNITS = {"box", "bottle", "pack", "tube"};
+    private static final String[] PHONE_PREFIXES = {"03", "09"};
 
     public static void main(String[] args) throws IOException {
         generateBranches();
@@ -63,8 +63,8 @@ public class DataGenerator {
         try (BufferedWriter fw = openCsv("medicines.csv")) {
             fw.write("medicine_id,medicine_name,unit,units_per_box,description,manufacturer\n");
             for (int i = 1; i <= 200; i++) {
-                String unit = UNITS[rand.nextInt(UNITS.length)];
-                int unitsPerBox = unit.equals("bottle") ? 6 + rand.nextInt(5) : 10 + rand.nextInt(6);
+                String unit = "box";
+                int unitsPerBox = 10 + rand.nextInt(6);
                 fw.write(String.format("M%04d,%s,%s,%d,Desc %d,Manu %d\n", i,
                         MEDICINES[rand.nextInt(MEDICINES.length)], unit, unitsPerBox, i, 1 + rand.nextInt(10)));
             }
@@ -73,15 +73,17 @@ public class DataGenerator {
 
     private static void generatePharmacists() throws IOException {
         try (BufferedWriter fw = openCsv("pharmacists.csv")) {
-            fw.write("pharmacist_id,pharmacistname,branch_id,username,password,role\n");
+            fw.write("pharmacist_id,pharmacist_name,branch_id,phone_number,password,role\n");
             for (int i = 1; i <= 100; i++) {
                 String fullName = String.format("%s %s %s",
                         FIRSTNAMES[rand.nextInt(FIRSTNAMES.length)],
                         MIDDLENAMES[rand.nextInt(MIDDLENAMES.length)],
                         LASTNAMES[rand.nextInt(LASTNAMES.length)]);
+                String prefix = PHONE_PREFIXES[rand.nextInt(PHONE_PREFIXES.length)];
+                String phoneNumber = prefix + String.format("%08d", rand.nextInt(100000000));
                 fw.write(
-                        String.format("P%03d,%s,B%03d,user%d,password123,STAFF\n", i, fullName, 1 + rand.nextInt(20),
-                                i));
+                        String.format("P%03d,%s,B%03d,%s,password123,STAFF\n", i, fullName, 1 + rand.nextInt(20),
+                                phoneNumber));
             }
         }
     }
