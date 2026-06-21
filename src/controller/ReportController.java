@@ -1,10 +1,11 @@
 package controller;
 
-import repository.*;
-import model.*;
 import java.util.List;
+import model.*;
+import repository.*;
 
 public class ReportController {
+
     private final StockRepository stockRepo;
     private final PrescriptionRepository presRepo;
     private final BatchLotRepository lotRepo;
@@ -16,20 +17,20 @@ public class ReportController {
     }
 
     public void printReport() {
-        System.out.println("===== BÁO CÁO TỒN KHO =====");
+        System.out.println("===== STOCK REPORT =====");
         List<Stock> stocks = stockRepo.readAll("data/stocks.csv");
         stocks.forEach(s -> System.out.println(s.toCsvLine()));
 
-        System.out.println("===== ĐƠN THUỐC ĐÃ XUẤT =====");
+        System.out.println("===== DISPENSED PRESCRIPTIONS =====");
         List<Prescription> pres = presRepo.readAll("data/prescriptions.csv");
         pres.stream()
                 .filter(p -> "DISPENSED".equals(p.getStatus()))
                 .forEach(p -> System.out.println(p.toCsvLine()));
 
-        System.out.println("===== LÔ THUỐC SẮP HẾT HẠN =====");
+        System.out.println("===== NEAR-EXPIRY BATCHES =====");
         List<BatchLot> lots = lotRepo.readAll("data/batch_lots.csv");
         lots.stream()
                 .filter(l -> l.isNearExpiry())
-                .forEach(l -> System.out.println("Cảnh báo: " + l.getBatchLotId()));
+                .forEach(l -> System.out.println("Warning: " + l.getBatchLotId()));
     }
 }

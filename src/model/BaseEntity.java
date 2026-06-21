@@ -22,7 +22,7 @@ public abstract class BaseEntity implements Serializable {
     }
 
     /**
-     * Chuyển object thành dòng CSV
+     * Convert object to a CSV line
      */
     public abstract String toCsvLine();
 

@@ -1,10 +1,11 @@
 package view;
 
-import java.util.Scanner;
 import controller.*;
+import java.util.Scanner;
 import model.User;
 
 public class MainView {
+
     private final LoginController loginController;
     private final DispenseController dispenseController;
     private final StockController stockController;
@@ -19,9 +20,9 @@ public class MainView {
 
     public void showMenu() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập ID: ");
+        System.out.print("Enter ID: ");
         String id = sc.nextLine();
-        System.out.print("Nhập mật khẩu: ");
+        System.out.print("Enter password: ");
         String pw = sc.nextLine();
 
         User user = loginController.login(id, pw);
@@ -37,46 +38,46 @@ public class MainView {
                 managerMenu(user, sc);
                 break;
             default:
-                System.out.println("Quyền truy cập không hợp lệ.");
+                System.out.println("Invalid access rights.");
         }
     }
 
     private void patientMenu(User user) {
-        System.out.println("PATIENT MENU: chức năng xem đơn thuốc chưa được triển khai.");
-        System.out.println("Vui lòng liên hệ nhà thuốc để biết chi tiết.");
+        System.out.println("PATIENT MENU: prescription viewing function not implemented yet.");
+        System.out.println("Please contact the pharmacy for details.");
     }
 
     private void pharmacistMenu(User user, Scanner sc) {
-        System.out.println("PHARMACIST MENU: xuất thuốc, xem tồn kho");
-        System.out.println("1. Xuất thuốc theo đơn");
-        System.out.println("2. Xem cảnh báo tồn kho");
-        System.out.print("Lựa chọn: ");
+        System.out.println("PHARMACIST MENU: dispense medicines, view stock");
+        System.out.println("1. Dispense by prescription");
+        System.out.println("2. View low-stock alerts");
+        System.out.print("Choice: ");
         String choice = sc.nextLine();
 
         switch (choice) {
             case "1":
-                System.out.print("Nhập mã đơn thuốc: ");
+                System.out.print("Enter prescription ID: ");
                 String prescriptionId = sc.nextLine();
                 try {
                     dispenseController.processDispense(prescriptionId, user.getId());
-                    System.out.println("Xuất thuốc thành công cho đơn " + prescriptionId);
+                    System.out.println("Dispensed successfully for prescription " + prescriptionId);
                 } catch (Exception e) {
-                    System.out.println("Lỗi khi xuất thuốc: " + e.getMessage());
+                    System.out.println("Error dispensing: " + e.getMessage());
                 }
                 break;
             case "2":
                 stockController.getLowStockAlert();
                 break;
             default:
-                System.out.println("Lựa chọn không hợp lệ.");
+                System.out.println("Invalid choice.");
         }
     }
 
     private void managerMenu(User user, Scanner sc) {
-        System.out.println("MANAGER MENU: quản lý kho, báo cáo");
-        System.out.println("1. Xem báo cáo kho");
-        System.out.println("2. Xem cảnh báo tồn kho");
-        System.out.print("Lựa chọn: ");
+        System.out.println("MANAGER MENU: stock management, reports");
+        System.out.println("1. View stock reports");
+        System.out.println("2. View low-stock alerts");
+        System.out.print("Choice: ");
         String choice = sc.nextLine();
 
         switch (choice) {
@@ -87,7 +88,7 @@ public class MainView {
                 stockController.getLowStockAlert();
                 break;
             default:
-                System.out.println("Lựa chọn không hợp lệ.");
+                System.out.println("Invalid choice.");
         }
     }
 }

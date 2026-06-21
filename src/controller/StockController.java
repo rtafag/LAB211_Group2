@@ -1,10 +1,11 @@
 package controller;
 
-import repository.StockRepository;
-import model.Stock;
 import java.util.List;
+import model.Stock;
+import repository.StockRepository;
 
 public class StockController {
+
     private final StockRepository stockRepo;
 
     public StockController(StockRepository repo) {
@@ -22,6 +23,6 @@ public class StockController {
         List<Stock> stocks = stockRepo.readAll("data/stocks.csv");
         stocks.stream()
                 .filter(s -> s.getQuantity() < 5)
-                .forEach(s -> System.out.println("Cảnh báo: " + s.getMedicineId() + " sắp hết hàng"));
+                .forEach(s -> System.out.println("Warning: " + s.getMedicineId() + " is running low"));
     }
 }
