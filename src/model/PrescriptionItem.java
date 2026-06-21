@@ -14,6 +14,22 @@ public class PrescriptionItem extends BaseEntity {
         this.quantity = quantity;
     }
 
+    public String getPrescriptionItemId() {
+        return prescriptionItemId;
+    }
+
+    public String getPrescriptionId() {
+        return prescriptionId;
+    }
+
+    public String getMedicineId() {
+        return medicineId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public String toCsvLine() {
         return String.join(",", prescriptionItemId, prescriptionId, medicineId, String.valueOf(quantity));

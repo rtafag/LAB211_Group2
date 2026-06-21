@@ -39,9 +39,13 @@ public class StockRepository extends CsvRepository<Stock> {
     }
 
     public void deductWithSync(String medicineId, int qtyBoxes) {
+        deductWithSync(null, medicineId, qtyBoxes);
+    }
+
+    public void deductWithSync(String branchId, String medicineId, int qtyBoxes) {
         synchronized (STOCK_LOCK) {
             List<Stock> stocks = readAll(fileName);
-            Stock stock = findStock(stocks, medicineId);
+            Stock stock = findStock(stocks, branchId, medicineId);
             stock.deduct(qtyBoxes);
             writeAll(fileName, stocks);
         }
@@ -50,12 +54,12 @@ public class StockRepository extends CsvRepository<Stock> {
     public void deductWithOptimistic(String medicineId, int qtyBoxes) {
         for (int attempt = 0; attempt < 5; attempt++) {
             List<Stock> stocks = readAll(fileName);
-            Stock stock = findStock(stocks, medicineId);
+            Stock stock = findStock(stocks, null, medicineId);
             int expectedVersion = stock.getVersion();
             stock.deduct(qtyBoxes);
 
             List<Stock> latest = readAll(fileName);
-            Stock latestStock = findStock(latest, medicineId);
+            Stock latestStock = findStock(latest, null, medicineId);
             if (latestStock.getVersion() == expectedVersion) {
                 writeAll(fileName, stocks);
                 return;
@@ -71,7 +75,7 @@ public class StockRepository extends CsvRepository<Stock> {
             FileLock lock = channel.lock();
             try {
                 List<Stock> stocks = readAll(fileName);
-                Stock stock = findStock(stocks, medicineId);
+                Stock stock = findStock(stocks, null, medicineId);
                 stock.deduct(qtyBoxes);
                 writeAll(fileName, stocks);
             } finally {
@@ -83,9 +87,15 @@ public class StockRepository extends CsvRepository<Stock> {
     }
 
     private Stock findStock(List<Stock> stocks, String medicineId) {
+        return findStock(stocks, null, medicineId);
+    }
+
+    private Stock findStock(List<Stock> stocks, String branchId, String medicineId) {
         return stocks.stream()
                 .filter(stock -> medicineId.equals(stock.getMedicineId()))
+                .filter(stock -> branchId == null || branchId.equals(stock.getBranchId()))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No stock found for medicine " + medicineId));
+                .orElseThrow(() -> new IllegalArgumentException("No stock found for medicine " + medicineId
+                        + (branchId != null ? " in branch " + branchId : "")));
     }
 }

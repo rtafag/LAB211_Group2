@@ -38,6 +38,13 @@ public class PrescriptionRepository extends CsvRepository<Prescription> {
         return "prescription_id,patient_name,patient_dob,created_date,expired_date,status,branch_id,version";
     }
 
+    public Prescription findById(String prescriptionId) {
+        return readAll(fileName).stream()
+                .filter(p -> prescriptionId.equals(p.getPrescriptionId()))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void markDispensed(String prescriptionId) throws PrescriptionAlreadyDispensedException {
         synchronized (PRESCRIPTION_LOCK) {
             List<Prescription> prescriptions = readAll(fileName);

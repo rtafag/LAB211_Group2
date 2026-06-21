@@ -32,8 +32,13 @@ public class BatchLotRepository extends CsvRepository<BatchLot> {
     }
 
     public BatchLot findBestLot(String medicineId) {
+        return findBestLot(medicineId, null);
+    }
+
+    public BatchLot findBestLot(String medicineId, String branchId) {
         return readAll(fileName).stream()
                 .filter(lot -> medicineId.equals(lot.getMedicineId()))
+                .filter(lot -> branchId == null || branchId.equals(lot.getBranchId()))
                 .filter(lot -> lot.getQuantity() > 0)
                 .filter(lot -> !lot.isExpired())
                 .min(Comparator.comparing(BatchLot::getExpiryDate)

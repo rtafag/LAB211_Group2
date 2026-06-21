@@ -63,6 +63,10 @@ public class BatchLot extends BaseEntity {
         return expiryDate.isBefore(LocalDate.now());
     }
 
+    public boolean isNearExpiry() {
+        return !isExpired() && expiryDate.isBefore(LocalDate.now().plusDays(7));
+    }
+
     /**
      * Deduct box quantity from this batch. Throws IllegalArgumentException for
      * non-positive amounts, IllegalStateException when insufficient quantity.
