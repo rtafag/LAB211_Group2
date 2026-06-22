@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Main (Console Window)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "LAB211_Group2",
+            "console": "externalTerminal"
+        },
+        {
+            "type": "java",
+            "name": "Run Main (Integrated Terminal)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "LAB211_Group2",
+            "console": "integratedTerminal"
+        }
+    ]
+}
