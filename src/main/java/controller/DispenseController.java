@@ -39,10 +39,6 @@ public class DispenseController {
             throw new IllegalStateException("Prescription " + prescriptionId + " is already dispensed");
         }
 
-        if (!"PENDING".equals(prescription.getStatus())) {
-            throw new IllegalStateException("Prescription " + prescriptionId + " is not in PENDING status");
-        }
-
         List<PrescriptionItem> items = itemRepo.findByPrescriptionId(prescriptionId);
 
         String branchId = prescription.getBranchId();
