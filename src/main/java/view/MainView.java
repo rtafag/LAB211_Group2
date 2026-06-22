@@ -167,17 +167,21 @@ public class MainView {
 
     private void managerMenu(User user, Scanner sc) {
         System.out.println("MANAGER MENU: stock management, reports");
-        System.out.println("1. View stock reports");
-        System.out.println("2. View low-stock alerts");
+        System.out.println("1. View stock reports by branch");
+        System.out.println("2. View low-stock alerts by branch (< 60)");
         System.out.print("Choice: ");
         String choice = sc.nextLine();
 
         switch (choice) {
             case "1":
-                reportController.printReport();
+                System.out.print("Enter branch ID (e.g., B001): ");
+                String branchIdForReport = sc.nextLine();
+                stockController.getStockByBranch(branchIdForReport);
                 break;
             case "2":
-                stockController.getLowStockAlert();
+                System.out.print("Enter branch ID (e.g., B001): ");
+                String branchIdForLowStock = sc.nextLine();
+                stockController.getLowStockAlertByBranch(branchIdForLowStock, 60);
                 break;
             default:
                 System.out.println("Invalid choice.");
