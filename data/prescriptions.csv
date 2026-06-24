@@ -1,5 +1,5 @@
-﻿prescription_id,patient_name,patient_birthday,created_date,expired_date,status,branch_id,version
-PR00001,Võ Hữu Thu,2000-11-15,2026-06-20,2026-06-25,PENDING,B007,1
+prescription_id,patient_name,patient_dob,created_date,expired_date,status,branch_id,version
+PR00001,Nguyen Dang Khoa,2000-11-15,2026-06-20,2026-06-25,PENDING,B007,2
 PR00002,Đặng Quang Thu,1973-06-25,2026-06-16,2026-06-21,PENDING,B016,1
 PR00003,Võ Văn Bình,1974-02-25,2026-06-21,2026-06-26,PENDING,B017,1
 PR00004,Trịnh Quang An,1975-06-21,2026-06-14,2026-06-19,PENDING,B018,1
