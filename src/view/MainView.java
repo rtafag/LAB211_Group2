@@ -57,7 +57,8 @@ public class MainView {
             System.out.println("PHARMACIST MENU:");
             System.out.println("1. Create prescription");
             System.out.println("2. View prescription");
-            System.out.println("3. View stock");
+            System.out.println("3. View stock, batch lot, report");
+            System.out.println("4. Medicine management");
             System.out.println("0. Back");
             System.out.print("Choice: ");
             String choice = sc.nextLine();
@@ -73,10 +74,10 @@ public class MainView {
                     handlePrescriptionAction(sc, user, prescriptionId);
                     break;
                 case "3":
-                    System.out.print("Enter branch ID (e.g., B001): ");
-                    String branchId = sc.nextLine();
-                    stockController.getStockByBranch(branchId);
-                    pauseForEnter(sc);
+                    managerMenu(user, sc);
+                    break;
+                case "4":
+                    medicinesManageMenu(sc);
                     break;
                 case "0":
                     return;
@@ -197,6 +198,8 @@ public class MainView {
             System.out.println("MANAGER MENU: stock management, reports");
             System.out.println("1. View stock reports by branch");
             System.out.println("2. View low-stock alerts by branch (< 60)");
+            System.out.println("3. View near expiry warning");
+            System.out.println("4. Sale report");
             System.out.println("0. Back");
             System.out.print("Choice: ");
             String choice = sc.nextLine();
@@ -214,11 +217,105 @@ public class MainView {
                     stockController.getLowStockAlertByBranch(branchIdForLowStock, 60);
                     pauseForEnter(sc);
                     break;
+                case "3":
+                    System.out.print("Enter branch ID (e.g., B001): ");
+                    String branchIdForNearExpiry = sc.nextLine();
+                    reportController.printNearExpiryWarning(branchIdForNearExpiry);
+                    pauseForEnter(sc);
+                    break;
+                case "4":
+                    System.out.print("Enter branch ID (e.g., B001): ");
+                    String branchIdForSaleReport = sc.nextLine();
+                    reportController.printSaleReport(branchIdForSaleReport);
+                    pauseForEnter(sc);
+                    break;
                 case "0":
                     return;
                 default:
                     System.out.println("Invalid choice.");
             }
+        }
+    }
+
+    private void medicinesManageMenu(Scanner sc) {
+        while (true) {
+            System.out.println("MEDICINE MANAGEMENT:");
+            System.out.println("1. Add medicine to stock");
+            System.out.println("2. Edit medicine in stock");
+            System.out.println("3. Delete medicine from stock");
+            System.out.println("0. Back");
+            System.out.print("Choice: ");
+            String choice = sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                    addMedicineToStockFlow(sc);
+                    pauseForEnter(sc);
+                    break;
+                case "2":
+                    editMedicineInStockFlow(sc);
+                    pauseForEnter(sc);
+                    break;
+                case "3":
+                    deleteMedicineFromStockFlow(sc);
+                    pauseForEnter(sc);
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+    }
+
+    private void addMedicineToStockFlow(Scanner sc) {
+        System.out.print("Enter medicine name: ");
+        String medicineName = sc.nextLine();
+        System.out.print("Enter branch ID (e.g., B001): ");
+        String branchId = sc.nextLine();
+        System.out.print("Enter quantity: ");
+        String quantityInput = sc.nextLine();
+
+        try {
+            int quantity = Integer.parseInt(quantityInput);
+            stockController.addMedicineToStock(medicineName, branchId, quantity);
+            System.out.println("Medicine saved to stock successfully.");
+        } catch (Exception e) {
+            System.out.println("Error adding medicine to stock: " + e.getMessage());
+        }
+    }
+
+    private void editMedicineInStockFlow(Scanner sc) {
+        System.out.print("Enter stock ID to edit (e.g., S00001): ");
+        String stockId = sc.nextLine();
+        System.out.print("New medicine name (Enter to keep current): ");
+        String newMedicineName = sc.nextLine();
+        System.out.print("New branch ID (Enter to keep current): ");
+        String newBranchId = sc.nextLine();
+        System.out.print("New quantity (Enter to keep current): ");
+        String newQuantityInput = sc.nextLine();
+
+        try {
+            Integer newQuantity = null;
+            if (newQuantityInput != null && !newQuantityInput.isBlank()) {
+                newQuantity = Integer.parseInt(newQuantityInput);
+            }
+            stockController.editMedicineInStock(stockId, newMedicineName, newBranchId, newQuantity);
+            System.out.println("Medicine stock updated successfully.");
+        } catch (Exception e) {
+            System.out.println("Error editing medicine stock: " + e.getMessage());
+        }
+    }
+
+    private void deleteMedicineFromStockFlow(Scanner sc) {
+        System.out.print("Enter stock ID to delete (e.g., S00001): ");
+        String stockId = sc.nextLine();
+
+        try {
+            stockController.deleteMedicineFromStock(stockId);
+            System.out.println("Medicine stock deleted successfully.");
+        } catch (Exception e) {
+            System.out.println("Error deleting medicine stock: " + e.getMessage());
         }
     }
 }

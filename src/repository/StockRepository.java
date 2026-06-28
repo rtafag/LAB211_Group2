@@ -98,6 +98,96 @@ public class StockRepository extends CsvRepository<Stock> {
                 .sum() >= requiredQty;
     }
 
+    public Stock findByStockId(String stockId) {
+        if (stockId == null || stockId.isBlank()) {
+            return null;
+        }
+        return readAll(fileName).stream()
+                .filter(stock -> stockId.equals(stock.getStockId()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void upsertStock(String branchId, String medicineId, int qtyBoxes) {
+        if (qtyBoxes <= 0) {
+            throw new IllegalArgumentException("quantity must be positive");
+        }
+        synchronized (STOCK_LOCK) {
+            List<Stock> stocks = readAll(fileName);
+            for (int i = 0; i < stocks.size(); i++) {
+                Stock current = stocks.get(i);
+                if (!branchId.equals(current.getBranchId()) || !medicineId.equals(current.getMedicineId())) {
+                    continue;
+                }
+                Stock updated = new Stock(
+                        current.getStockId(),
+                        current.getBranchId(),
+                        current.getMedicineId(),
+                        current.getQuantity() + qtyBoxes,
+                        current.getVersion() + 1);
+                stocks.set(i, updated);
+                writeAll(fileName, stocks);
+                return;
+            }
+
+            stocks.add(new Stock(generateNextStockId(stocks), branchId, medicineId, qtyBoxes, 1));
+            writeAll(fileName, stocks);
+        }
+    }
+
+    public void updateStock(String stockId, String newBranchId, String newMedicineId, int newQuantity) {
+        if (newQuantity < 0) {
+            throw new IllegalArgumentException("quantity cannot be negative");
+        }
+        synchronized (STOCK_LOCK) {
+            List<Stock> stocks = readAll(fileName);
+            for (int i = 0; i < stocks.size(); i++) {
+                Stock current = stocks.get(i);
+                if (!stockId.equals(current.getStockId())) {
+                    continue;
+                }
+
+                Stock updated = new Stock(
+                        current.getStockId(),
+                        newBranchId,
+                        newMedicineId,
+                        newQuantity,
+                        current.getVersion() + 1);
+                stocks.set(i, updated);
+                writeAll(fileName, stocks);
+                return;
+            }
+            throw new IllegalArgumentException("Stock not found: " + stockId);
+        }
+    }
+
+    public void deleteByStockId(String stockId) {
+        synchronized (STOCK_LOCK) {
+            List<Stock> stocks = readAll(fileName);
+            boolean removed = stocks.removeIf(stock -> stockId.equals(stock.getStockId()));
+            if (!removed) {
+                throw new IllegalArgumentException("Stock not found: " + stockId);
+            }
+            writeAll(fileName, stocks);
+        }
+    }
+
+    private String generateNextStockId(List<Stock> stocks) {
+        int maxId = stocks.stream()
+                .map(Stock::getStockId)
+                .filter(id -> id != null && id.startsWith("S"))
+                .mapToInt(id -> {
+                    try {
+                        return Integer.parseInt(id.substring(1));
+                    } catch (NumberFormatException ex) {
+                        return 0;
+                    }
+                })
+                .max()
+                .orElse(0);
+        return String.format("S%05d", maxId + 1);
+    }
+
     private Stock findStock(List<Stock> stocks, String medicineId) {
         return findStock(stocks, null, medicineId);
     }
