@@ -35,6 +35,10 @@ public class MainView {
         String pw = sc.nextLine();
 
         User user = loginController.login(phoneNumber, pw);
+        if (user == null) {
+            System.out.println("Login failed.");
+            return;
+        }
 
         switch (user.getRole()) {
             case "PHARMACIST":
@@ -49,27 +53,36 @@ public class MainView {
     }
 
     private void pharmacistMenu(User user, Scanner sc) {
-        System.out.println("PHARMACIST MENU: dispense medicines, view stock");
-        System.out.println("1. Create prescription");
-        System.out.println("2. Dispense by prescription");
-        System.out.println("3. View low-stock alerts");
-        System.out.print("Choice: ");
-        String choice = sc.nextLine();
+        while (true) {
+            System.out.println("PHARMACIST MENU:");
+            System.out.println("1. Create prescription");
+            System.out.println("2. View prescription");
+            System.out.println("3. View stock");
+            System.out.println("0. Back");
+            System.out.print("Choice: ");
+            String choice = sc.nextLine();
 
-        switch (choice) {
-            case "1":
-                createPrescription(sc);
-                break;
-            case "2":
-                System.out.print("Enter prescription ID: ");
-                String prescriptionId = sc.nextLine();
-                handlePrescriptionAction(sc, user, prescriptionId);
-                break;
-            case "3":
-                stockController.getLowStockAlert();
-                break;
-            default:
-                System.out.println("Invalid choice.");
+            switch (choice) {
+                case "1":
+                    createPrescription(sc);
+                    pauseForEnter(sc);
+                    break;
+                case "2":
+                    System.out.print("Enter prescription ID: ");
+                    String prescriptionId = sc.nextLine();
+                    handlePrescriptionAction(sc, user, prescriptionId);
+                    break;
+                case "3":
+                    System.out.print("Enter branch ID (e.g., B001): ");
+                    String branchId = sc.nextLine();
+                    stockController.getStockByBranch(branchId);
+                    pauseForEnter(sc);
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
         }
     }
 
@@ -105,37 +118,46 @@ public class MainView {
             return;
         }
 
-        System.out.println("--- Prescription Information ---");
-        System.out.println("ID: " + prescription.getPrescriptionId());
-        System.out.println("Patient Name: " + prescription.getPatientName());
-        System.out.println("Patient DOB: " + prescription.getPatientDob());
-        System.out.println("Create Date: " + prescription.getCreatedDate());
-        System.out.println("Expiry Date: " + prescription.getExpiredDate());
-        System.out.println("Status: " + prescription.getStatus());
-        System.out.println("Branch ID: " + prescription.getBranchId());
+        while (true) {
+            System.out.println("--- Prescription Information ---");
+            System.out.println("ID: " + prescription.getPrescriptionId());
+            System.out.println("Patient Name: " + prescription.getPatientName());
+            System.out.println("Patient DOB: " + prescription.getPatientDob());
+            System.out.println("Create Date: " + prescription.getCreatedDate());
+            System.out.println("Expiry Date: " + prescription.getExpiredDate());
+            System.out.println("Status: " + prescription.getStatus());
+            System.out.println("Branch ID: " + prescription.getBranchId());
 
-        System.out.println("1. Confirm order");
-        System.out.println("2. Edit information");
-        System.out.println("3. Back");
-        System.out.print("Choice: ");
-        String choice = sc.nextLine();
+            System.out.println("1. Confirm order");
+            System.out.println("2. Edit information");
+            System.out.println("3. Back");
+            System.out.print("Choice: ");
+            String choice = sc.nextLine();
 
-        switch (choice) {
-            case "1":
-                try {
-                    String resultMessage = dispenseController.processDispense(prescriptionId, user.getId());
-                    System.out.println(resultMessage);
-                } catch (Exception e) {
-                    System.out.println("Error dispensing: " + e.getMessage());
-                }
-                break;
-            case "2":
-                editPrescriptionInformation(sc, prescription);
-                break;
-            case "3":
-                break;
-            default:
-                System.out.println("Invalid choice.");
+            switch (choice) {
+                case "1":
+                    try {
+                        String resultMessage = dispenseController.processDispense(prescriptionId, user.getId());
+                        System.out.println(resultMessage);
+                    } catch (Exception e) {
+                        System.out.println("Error dispensing: " + e.getMessage());
+                    }
+                    pauseForEnter(sc);
+                    break;
+                case "2":
+                    editPrescriptionInformation(sc, prescription);
+                    prescription = prescriptionController.findById(prescriptionId);
+                    if (prescription == null) {
+                        System.out.println("Prescription not found: " + prescriptionId);
+                        return;
+                    }
+                    pauseForEnter(sc);
+                    break;
+                case "3":
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
         }
     }
 
@@ -165,26 +187,38 @@ public class MainView {
         }
     }
 
-    private void managerMenu(User user, Scanner sc) {
-        System.out.println("MANAGER MENU: stock management, reports");
-        System.out.println("1. View stock reports by branch");
-        System.out.println("2. View low-stock alerts by branch (< 60)");
-        System.out.print("Choice: ");
-        String choice = sc.nextLine();
+    private void pauseForEnter(Scanner sc) {
+        System.out.print("\nPress Enter to return to menu...");
+        sc.nextLine();
+    }
 
-        switch (choice) {
-            case "1":
-                System.out.print("Enter branch ID (e.g., B001): ");
-                String branchIdForReport = sc.nextLine();
-                stockController.getStockByBranch(branchIdForReport);
-                break;
-            case "2":
-                System.out.print("Enter branch ID (e.g., B001): ");
-                String branchIdForLowStock = sc.nextLine();
-                stockController.getLowStockAlertByBranch(branchIdForLowStock, 60);
-                break;
-            default:
-                System.out.println("Invalid choice.");
+    private void managerMenu(User user, Scanner sc) {
+        while (true) {
+            System.out.println("MANAGER MENU: stock management, reports");
+            System.out.println("1. View stock reports by branch");
+            System.out.println("2. View low-stock alerts by branch (< 60)");
+            System.out.println("0. Back");
+            System.out.print("Choice: ");
+            String choice = sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.print("Enter branch ID (e.g., B001): ");
+                    String branchIdForReport = sc.nextLine();
+                    stockController.getStockByBranch(branchIdForReport);
+                    pauseForEnter(sc);
+                    break;
+                case "2":
+                    System.out.print("Enter branch ID (e.g., B001): ");
+                    String branchIdForLowStock = sc.nextLine();
+                    stockController.getLowStockAlertByBranch(branchIdForLowStock, 60);
+                    pauseForEnter(sc);
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
         }
     }
 }
