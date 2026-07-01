@@ -54,43 +54,6 @@ public class MedicineRepository extends CsvRepository<Medicine> {
         writeAll(fileName, medicines);
     }
 
-    public void updateMedicine(String medicineId, String newMedicineName, String newDescription, String newManufacturer) {
-        if (medicineId == null || medicineId.isBlank()) {
-            throw new IllegalArgumentException("Medicine ID is required");
-        }
-
-        List<Medicine> medicines = findAll();
-        for (int i = 0; i < medicines.size(); i++) {
-            Medicine current = medicines.get(i);
-            if (!medicineId.trim().equals(current.getMedicineId())) {
-                continue;
-            }
-
-            String updatedName = (newMedicineName == null || newMedicineName.isBlank())
-                    ? current.getMedicineName()
-                    : newMedicineName.trim();
-            String updatedDescription = (newDescription == null || newDescription.isBlank())
-                    ? current.getDescription()
-                    : newDescription.trim();
-            String updatedManufacturer = (newManufacturer == null || newManufacturer.isBlank())
-                    ? current.getManufacturer()
-                    : newManufacturer.trim();
-
-            Medicine updated = new Medicine(
-                    current.getMedicineId(),
-                    updatedName,
-                    current.getUnit(),
-                    current.getUnitsPerBox(),
-                    updatedDescription,
-                    updatedManufacturer);
-            medicines.set(i, updated);
-            writeAll(fileName, medicines);
-            return;
-        }
-
-        throw new IllegalArgumentException("Medicine not found: " + medicineId);
-    }
-
     public String generateNextMedicineId() {
         int maxId = findAll().stream()
                 .map(Medicine::getMedicineId)

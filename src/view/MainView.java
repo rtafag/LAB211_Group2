@@ -271,10 +271,6 @@ public class MainView {
     private void addMedicineToStockFlow(Scanner sc) {
         System.out.print("Enter medicine name: ");
         String medicineName = sc.nextLine();
-        System.out.print("Enter description: ");
-        String description = sc.nextLine();
-        System.out.print("Enter manufacturer: ");
-        String manufacturer = sc.nextLine();
         System.out.print("Enter branch ID (e.g., B001): ");
         String branchId = sc.nextLine();
         System.out.print("Enter quantity: ");
@@ -282,7 +278,7 @@ public class MainView {
 
         try {
             int quantity = Integer.parseInt(quantityInput);
-            stockController.addMedicineToStock(medicineName, description, manufacturer, branchId, quantity);
+            stockController.addMedicineToStock(medicineName, branchId, quantity);
             System.out.println("Medicine saved to stock successfully.");
         } catch (Exception e) {
             System.out.println("Error adding medicine to stock: " + e.getMessage());
@@ -294,10 +290,6 @@ public class MainView {
         String stockId = sc.nextLine();
         System.out.print("New medicine name (Enter to keep current): ");
         String newMedicineName = sc.nextLine();
-        System.out.print("New description (Enter to keep current): ");
-        String newDescription = sc.nextLine();
-        System.out.print("New manufacturer (Enter to keep current): ");
-        String newManufacturer = sc.nextLine();
         System.out.print("New branch ID (Enter to keep current): ");
         String newBranchId = sc.nextLine();
         System.out.print("New quantity (Enter to keep current): ");
@@ -311,8 +303,6 @@ public class MainView {
             stockController.editMedicineInStock(
                     stockId,
                     newMedicineName,
-                    newDescription,
-                    newManufacturer,
                     newBranchId,
                     newQuantity);
             System.out.println("Medicine stock updated successfully.");

@@ -92,8 +92,7 @@ public class StockController {
         System.out.println("Branch ID is required for this view.");
     }
 
-    public void addMedicineToStock(String medicineName, String description, String manufacturer, String branchId,
-            int quantity) {
+    public void addMedicineToStock(String medicineName, String branchId, int quantity) {
         if (medicineName == null || medicineName.isBlank()) {
             throw new IllegalArgumentException("Medicine name is required");
         }
@@ -112,22 +111,15 @@ public class StockController {
                     medicineName.trim(),
                     "box",
                     1,
-                    normalizeOrDefault(description, "Added from console"),
-                    normalizeOrDefault(manufacturer, "Unknown"));
+                    "Added from console",
+                    "Unknown");
             medicineRepo.save(medicine);
-        } else if (!isBlank(description) || !isBlank(manufacturer)) {
-            medicineRepo.updateMedicine(
-                    medicine.getMedicineId(),
-                    null,
-                    description,
-                    manufacturer);
         }
 
         stockRepo.upsertStock(branchId.trim(), medicine.getMedicineId(), quantity);
     }
 
-    public void editMedicineInStock(String stockId, String newMedicineName, String newDescription,
-            String newManufacturer, String newBranchId, Integer newQuantity) {
+    public void editMedicineInStock(String stockId, String newMedicineName, String newBranchId, Integer newQuantity) {
         if (stockId == null || stockId.isBlank()) {
             throw new IllegalArgumentException("Stock ID is required");
         }
@@ -151,23 +143,11 @@ public class StockController {
                         newMedicineName.trim(),
                         "box",
                         1,
-                        normalizeOrDefault(newDescription, "Added from console"),
-                        normalizeOrDefault(newManufacturer, "Unknown"));
+                        "Added from console",
+                        "Unknown");
                 medicineRepo.save(medicine);
-            } else if (!isBlank(newDescription) || !isBlank(newManufacturer)) {
-                medicineRepo.updateMedicine(
-                        medicine.getMedicineId(),
-                        null,
-                        newDescription,
-                        newManufacturer);
             }
             medicineIdToUse = medicine.getMedicineId();
-        } else if (!isBlank(newDescription) || !isBlank(newManufacturer)) {
-            medicineRepo.updateMedicine(
-                    current.getMedicineId(),
-                    null,
-                    newDescription,
-                    newManufacturer);
         }
 
         int quantityToUse = newQuantity == null ? current.getQuantity() : newQuantity;
@@ -187,13 +167,5 @@ public class StockController {
         if (!exists) {
             throw new IllegalArgumentException("Branch not found: " + branchId);
         }
-    }
-
-    private String normalizeOrDefault(String value, String defaultValue) {
-        return isBlank(value) ? defaultValue : value.trim();
-    }
-
-    private boolean isBlank(String value) {
-        return value == null || value.isBlank();
     }
 }
