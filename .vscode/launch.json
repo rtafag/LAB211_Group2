@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RepositoryTests",
+            "request": "launch",
+            "mainClass": "RepositoryTests",
+            "projectName": "LAB211_Group2"
+        },
+        {
+            "type": "java",
             "name": "Run Main (Console Window)",
             "request": "launch",
             "mainClass": "Main",
