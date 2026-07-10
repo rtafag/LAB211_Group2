@@ -4,8 +4,11 @@ import java.util.List;
 
 import model.BatchLot;
 import model.Prescription;
+import model.PrescriptionItem;
 import model.Stock;
 import repository.BatchLotRepository;
+import repository.MedicineRepository;
+import repository.PrescriptionItemRepository;
 import repository.PrescriptionRepository;
 import repository.StockRepository;
 
@@ -14,11 +17,20 @@ public class ReportController {
     private final StockRepository stockRepo;
     private final PrescriptionRepository presRepo;
     private final BatchLotRepository lotRepo;
+    private final PrescriptionItemRepository presItemRepo;
+    private final MedicineRepository medicineRepo;
 
     public ReportController(StockRepository s, PrescriptionRepository p, BatchLotRepository b) {
+        this(s, p, b, new PrescriptionItemRepository(), new MedicineRepository());
+    }
+
+    public ReportController(StockRepository s, PrescriptionRepository p, BatchLotRepository b,
+            PrescriptionItemRepository pi, MedicineRepository m) {
         this.stockRepo = s;
         this.presRepo = p;
         this.lotRepo = b;
+        this.presItemRepo = pi;
+        this.medicineRepo = m;
     }
 
     public void printReport() {
@@ -68,10 +80,45 @@ public class ReportController {
                 .filter(p -> "DISPENSED".equals(p.getStatus()))
                 .toList();
 
-        System.out.println("Total dispensed prescriptions in " + branchId + ": " + dispensed.size());
-        dispensed.forEach(p -> System.out.println(
-                "Prescription: " + p.getPrescriptionId()
-                + " | Branch: " + p.getBranchId()
-                + " | Created: " + p.getCreatedDate()));
+        if (dispensed.isEmpty()) {
+            System.out.println("No dispensed prescriptions found for branch " + branchId + ".");
+            return;
+        }
+
+        System.out.println("Total dispensed prescriptions: " + dispensed.size());
+        System.out.println("--- PRESCRIPTION DETAILS ---");
+
+        double totalRevenue = 0;
+        for (Prescription p : dispensed) {
+            List<PrescriptionItem> items = presItemRepo.findByPrescriptionId(p.getPrescriptionId());
+            double prescriptionTotal = 0;
+
+            for (PrescriptionItem item : items) {
+                String medicineId = item.getMedicineId();
+                int quantity = item.getQuantity();
+
+                List<model.Medicine> medicines = medicineRepo.findAll();
+                model.Medicine medicine = medicines.stream()
+                        .filter(m -> m.getMedicineId().equals(medicineId))
+                        .findFirst()
+                        .orElse(null);
+
+                if (medicine != null) {
+                    double lineTotal = quantity * medicine.getPrice();
+                    prescriptionTotal += lineTotal;
+                    System.out.println("  Medicine: " + medicine.getMedicineName()
+                            + " | Qty: " + quantity
+                            + " | Price: " + medicine.getPrice()
+                            + " | Line Total: " + lineTotal);
+                }
+            }
+
+            totalRevenue += prescriptionTotal;
+            System.out.println("Prescription " + p.getPrescriptionId()
+                    + " | Total: " + prescriptionTotal);
+            System.out.println();
+        }
+
+        System.out.println("===== TOTAL REVENUE: " + totalRevenue + " =====");
     }
 }

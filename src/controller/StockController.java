@@ -111,8 +111,7 @@ public class StockController {
                     medicineName.trim(),
                     "box",
                     1,
-                    "Added from console",
-                    "Unknown");
+                    100000.0);
             medicineRepo.save(medicine);
         }
 
@@ -143,8 +142,7 @@ public class StockController {
                         newMedicineName.trim(),
                         "box",
                         1,
-                        "Added from console",
-                        "Unknown");
+                        100000.0);
                 medicineRepo.save(medicine);
             }
             medicineIdToUse = medicine.getMedicineId();

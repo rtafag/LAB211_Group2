@@ -1,201 +1,201 @@
-﻿medicine_id,medicine_name,unit,units_per_box,description,manufacturer
-M0001,Herbal supplements,box,13,Desc 1,Manu 4
-M0002,Mineral supplements,box,15,Desc 2,Manu 9
-M0003,Fiber supplements,box,13,Desc 3,Manu 8
-M0004,Glucosamine,box,13,Desc 4,Manu 1
-M0005,Glucosamine,box,12,Desc 5,Manu 8
-M0006,Mineral supplements,box,13,Desc 6,Manu 6
-M0007,Chondroitin,box,11,Desc 7,Manu 2
-M0008,Dietary supplement,box,10,Desc 8,Manu 3
-M0009,Omega-3,box,15,Desc 9,Manu 9
-M0010,Collagen,box,11,Desc 10,Manu 5
-M0011,Glucosamine,box,10,Desc 11,Manu 6
-M0012,Protein powder,box,14,Desc 12,Manu 1
-M0013,Multivitamin,box,11,Desc 13,Manu 10
-M0014,Probiotics,box,13,Desc 14,Manu 4
-M0015,Coenzyme Q10,box,13,Desc 15,Manu 1
-M0016,Protein powder,box,10,Desc 16,Manu 3
-M0017,Dietary supplement,box,11,Desc 17,Manu 6
-M0018,Glucosamine,box,14,Desc 18,Manu 10
-M0019,Coenzyme Q10,box,12,Desc 19,Manu 1
-M0020,Chondroitin,box,13,Desc 20,Manu 8
-M0021,Omega-3,box,14,Desc 21,Manu 3
-M0022,Vitamin supplements,box,12,Desc 22,Manu 10
-M0023,Probiotics,box,13,Desc 23,Manu 6
-M0024,Coenzyme Q10,box,13,Desc 24,Manu 8
-M0025,Vitamin supplements,box,10,Desc 25,Manu 1
-M0026,Dietary supplement,box,14,Desc 26,Manu 10
-M0027,Probiotics,box,15,Desc 27,Manu 6
-M0028,Probiotics,box,12,Desc 28,Manu 1
-M0029,Multivitamin,box,15,Desc 29,Manu 8
-M0030,Probiotics,box,14,Desc 30,Manu 5
-M0031,Coenzyme Q10,box,13,Desc 31,Manu 3
-M0032,Glucosamine,box,12,Desc 32,Manu 10
-M0033,Herbal supplements,box,15,Desc 33,Manu 8
-M0034,Protein powder,box,12,Desc 34,Manu 1
-M0035,Multivitamin,box,15,Desc 35,Manu 6
-M0036,Fiber supplements,box,13,Desc 36,Manu 5
-M0037,Dietary supplement,box,14,Desc 37,Manu 4
-M0038,Coenzyme Q10,box,15,Desc 38,Manu 7
-M0039,Glucosamine,box,11,Desc 39,Manu 1
-M0040,Fiber supplements,box,14,Desc 40,Manu 4
-M0041,Vitamin supplements,box,10,Desc 41,Manu 8
-M0042,Mineral supplements,box,14,Desc 42,Manu 8
-M0043,Glucosamine,box,14,Desc 43,Manu 7
-M0044,Vitamin supplements,box,12,Desc 44,Manu 2
-M0045,Mineral supplements,box,14,Desc 45,Manu 9
-M0046,Mineral supplements,box,12,Desc 46,Manu 3
-M0047,Fiber supplements,box,14,Desc 47,Manu 3
-M0048,Collagen,box,13,Desc 48,Manu 2
-M0049,Multivitamin,box,15,Desc 49,Manu 5
-M0050,Protein powder,box,15,Desc 50,Manu 5
-M0051,Omega-3,box,12,Desc 51,Manu 3
-M0052,Dietary supplement,box,15,Desc 52,Manu 5
-M0053,Multivitamin,box,12,Desc 53,Manu 8
-M0054,Fiber supplements,box,11,Desc 54,Manu 1
-M0055,Herbal supplements,box,12,Desc 55,Manu 6
-M0056,Vitamin supplements,box,11,Desc 56,Manu 5
-M0057,Multivitamin,box,14,Desc 57,Manu 4
-M0058,Protein powder,box,11,Desc 58,Manu 6
-M0059,Fiber supplements,box,13,Desc 59,Manu 9
-M0060,Herbal supplements,box,15,Desc 60,Manu 10
-M0061,Mineral supplements,box,12,Desc 61,Manu 7
-M0062,Mineral supplements,box,12,Desc 62,Manu 1
-M0063,Vitamin supplements,box,12,Desc 63,Manu 8
-M0064,Mineral supplements,box,14,Desc 64,Manu 2
-M0065,Dietary supplement,box,10,Desc 65,Manu 3
-M0066,Fiber supplements,box,14,Desc 66,Manu 7
-M0067,Glucosamine,box,11,Desc 67,Manu 2
-M0068,Chondroitin,box,13,Desc 68,Manu 9
-M0069,Chondroitin,box,13,Desc 69,Manu 5
-M0070,Protein powder,box,11,Desc 70,Manu 7
-M0071,Herbal supplements,box,15,Desc 71,Manu 1
-M0072,Probiotics,box,14,Desc 72,Manu 7
-M0073,Coenzyme Q10,box,11,Desc 73,Manu 8
-M0074,Dietary supplement,box,12,Desc 74,Manu 5
-M0075,Multivitamin,box,12,Desc 75,Manu 10
-M0076,Omega-3,box,13,Desc 76,Manu 8
-M0077,Probiotics,box,15,Desc 77,Manu 9
-M0078,Dietary supplement,box,10,Desc 78,Manu 6
-M0079,Mineral supplements,box,15,Desc 79,Manu 3
-M0080,Fiber supplements,box,13,Desc 80,Manu 2
-M0081,Coenzyme Q10,box,12,Desc 81,Manu 8
-M0082,Coenzyme Q10,box,10,Desc 82,Manu 6
-M0083,Multivitamin,box,12,Desc 83,Manu 6
-M0084,Dietary supplement,box,11,Desc 84,Manu 8
-M0085,Herbal supplements,box,15,Desc 85,Manu 9
-M0086,Coenzyme Q10,box,10,Desc 86,Manu 3
-M0087,Chondroitin,box,13,Desc 87,Manu 4
-M0088,Herbal supplements,box,12,Desc 88,Manu 8
-M0089,Herbal supplements,box,15,Desc 89,Manu 3
-M0090,Protein powder,box,14,Desc 90,Manu 6
-M0091,Collagen,box,15,Desc 91,Manu 10
-M0092,Omega-3,box,12,Desc 92,Manu 7
-M0093,Fiber supplements,box,11,Desc 93,Manu 9
-M0094,Collagen,box,12,Desc 94,Manu 7
-M0095,Mineral supplements,box,14,Desc 95,Manu 5
-M0096,Mineral supplements,box,11,Desc 96,Manu 1
-M0097,Multivitamin,box,15,Desc 97,Manu 4
-M0098,Multivitamin,box,15,Desc 98,Manu 4
-M0099,Collagen,box,12,Desc 99,Manu 9
-M0100,Dietary supplement,box,11,Desc 100,Manu 1
-M0101,Collagen,box,14,Desc 101,Manu 9
-M0102,Omega-3,box,14,Desc 102,Manu 1
-M0103,Vitamin supplements,box,14,Desc 103,Manu 5
-M0104,Probiotics,box,11,Desc 104,Manu 5
-M0105,Protein powder,box,12,Desc 105,Manu 4
-M0106,Collagen,box,13,Desc 106,Manu 6
-M0107,Chondroitin,box,12,Desc 107,Manu 5
-M0108,Vitamin supplements,box,12,Desc 108,Manu 5
-M0109,Dietary supplement,box,14,Desc 109,Manu 10
-M0110,Herbal supplements,box,12,Desc 110,Manu 7
-M0111,Glucosamine,box,13,Desc 111,Manu 7
-M0112,Coenzyme Q10,box,11,Desc 112,Manu 4
-M0113,Protein powder,box,15,Desc 113,Manu 8
-M0114,Omega-3,box,15,Desc 114,Manu 9
-M0115,Glucosamine,box,10,Desc 115,Manu 9
-M0116,Probiotics,box,11,Desc 116,Manu 4
-M0117,Protein powder,box,10,Desc 117,Manu 10
-M0118,Coenzyme Q10,box,13,Desc 118,Manu 10
-M0119,Vitamin supplements,box,11,Desc 119,Manu 9
-M0120,Coenzyme Q10,box,14,Desc 120,Manu 2
-M0121,Probiotics,box,15,Desc 121,Manu 7
-M0122,Mineral supplements,box,14,Desc 122,Manu 5
-M0123,Omega-3,box,10,Desc 123,Manu 9
-M0124,Coenzyme Q10,box,10,Desc 124,Manu 2
-M0125,Vitamin supplements,box,11,Desc 125,Manu 7
-M0126,Herbal supplements,box,11,Desc 126,Manu 3
-M0127,Herbal supplements,box,13,Desc 127,Manu 10
-M0128,Glucosamine,box,15,Desc 128,Manu 6
-M0129,Glucosamine,box,14,Desc 129,Manu 9
-M0130,Probiotics,box,10,Desc 130,Manu 10
-M0131,Probiotics,box,11,Desc 131,Manu 9
-M0132,Fiber supplements,box,13,Desc 132,Manu 6
-M0133,Protein powder,box,13,Desc 133,Manu 8
-M0134,Chondroitin,box,13,Desc 134,Manu 7
-M0135,Dietary supplement,box,14,Desc 135,Manu 8
-M0136,Dietary supplement,box,15,Desc 136,Manu 7
-M0137,Collagen,box,15,Desc 137,Manu 8
-M0138,Herbal supplements,box,12,Desc 138,Manu 6
-M0139,Fiber supplements,box,13,Desc 139,Manu 4
-M0140,Chondroitin,box,15,Desc 140,Manu 4
-M0141,Collagen,box,11,Desc 141,Manu 6
-M0142,Probiotics,box,14,Desc 142,Manu 3
-M0143,Multivitamin,box,11,Desc 143,Manu 2
-M0144,Protein powder,box,13,Desc 144,Manu 7
-M0145,Multivitamin,box,13,Desc 145,Manu 4
-M0146,Vitamin supplements,box,14,Desc 146,Manu 10
-M0147,Glucosamine,box,11,Desc 147,Manu 5
-M0148,Chondroitin,box,13,Desc 148,Manu 9
-M0149,Multivitamin,box,11,Desc 149,Manu 3
-M0150,Dietary supplement,box,13,Desc 150,Manu 2
-M0151,Glucosamine,box,15,Desc 151,Manu 2
-M0152,Chondroitin,box,14,Desc 152,Manu 2
-M0153,Coenzyme Q10,box,15,Desc 153,Manu 5
-M0154,Dietary supplement,box,11,Desc 154,Manu 5
-M0155,Dietary supplement,box,10,Desc 155,Manu 10
-M0156,Collagen,box,12,Desc 156,Manu 10
-M0157,Protein powder,box,11,Desc 157,Manu 10
-M0158,Herbal supplements,box,14,Desc 158,Manu 8
-M0159,Chondroitin,box,15,Desc 159,Manu 10
-M0160,Vitamin supplements,box,13,Desc 160,Manu 1
-M0161,Probiotics,box,13,Desc 161,Manu 5
-M0162,Multivitamin,box,11,Desc 162,Manu 5
-M0163,Coenzyme Q10,box,14,Desc 163,Manu 7
-M0164,Chondroitin,box,13,Desc 164,Manu 6
-M0165,Omega-3,box,14,Desc 165,Manu 2
-M0166,Probiotics,box,13,Desc 166,Manu 4
-M0167,Multivitamin,box,10,Desc 167,Manu 4
-M0168,Probiotics,box,10,Desc 168,Manu 2
-M0169,Herbal supplements,box,13,Desc 169,Manu 9
-M0170,Herbal supplements,box,13,Desc 170,Manu 8
-M0171,Protein powder,box,13,Desc 171,Manu 8
-M0172,Probiotics,box,11,Desc 172,Manu 4
-M0173,Coenzyme Q10,box,15,Desc 173,Manu 2
-M0174,Coenzyme Q10,box,15,Desc 174,Manu 9
-M0175,Mineral supplements,box,11,Desc 175,Manu 6
-M0176,Herbal supplements,box,13,Desc 176,Manu 10
-M0177,Chondroitin,box,12,Desc 177,Manu 3
-M0178,Vitamin supplements,box,11,Desc 178,Manu 3
-M0179,Protein powder,box,15,Desc 179,Manu 6
-M0180,Collagen,box,14,Desc 180,Manu 1
-M0181,Vitamin supplements,box,14,Desc 181,Manu 1
-M0182,Vitamin supplements,box,14,Desc 182,Manu 9
-M0183,Coenzyme Q10,box,14,Desc 183,Manu 7
-M0184,Multivitamin,box,11,Desc 184,Manu 4
-M0185,Dietary supplement,box,10,Desc 185,Manu 2
-M0186,Herbal supplements,box,13,Desc 186,Manu 9
-M0187,Fiber supplements,box,11,Desc 187,Manu 6
-M0188,Omega-3,box,10,Desc 188,Manu 1
-M0189,Dietary supplement,box,12,Desc 189,Manu 6
-M0190,Protein powder,box,10,Desc 190,Manu 3
-M0191,Herbal supplements,box,13,Desc 191,Manu 2
-M0192,Chondroitin,box,14,Desc 192,Manu 9
-M0193,Multivitamin,box,13,Desc 193,Manu 8
-M0194,Collagen,box,15,Desc 194,Manu 10
-M0195,Chondroitin,box,10,Desc 195,Manu 2
-M0196,Mineral supplements,box,15,Desc 196,Manu 5
-M0197,Probiotics,box,15,Desc 197,Manu 6
-M0198,Mineral supplements,box,11,Desc 198,Manu 5
-M0199,Vitamin supplements,box,10,Desc 199,Manu 3
-M0200,Protein powder,box,13,Desc 200,Manu 5
+﻿medicine_id,medicine_name,unit,units_per_box,price
+M0001,Omega-3,box,10,450000
+M0002,Collagen,box,13,650000
+M0003,Coenzyme Q10,box,11,450000
+M0004,Multivitamin,box,15,500000
+M0005,Omega-3,box,14,450000
+M0006,Probiotics,box,14,400000
+M0007,Vitamin supplements,box,13,600000
+M0008,Multivitamin,box,11,500000
+M0009,Chondroitin,box,11,600000
+M0010,Fiber supplements,box,15,550000
+M0011,Multivitamin,box,11,500000
+M0012,Dietary supplement,box,10,500000
+M0013,Fiber supplements,box,14,550000
+M0014,Dietary supplement,box,15,500000
+M0015,Vitamin supplements,box,15,600000
+M0016,Fiber supplements,box,12,550000
+M0017,Fiber supplements,box,11,550000
+M0018,Omega-3,box,10,450000
+M0019,Multivitamin,box,13,500000
+M0020,Coenzyme Q10,box,14,450000
+M0021,Glucosamine,box,11,450000
+M0022,Fiber supplements,box,10,550000
+M0023,Glucosamine,box,10,450000
+M0024,Fiber supplements,box,12,550000
+M0025,Multivitamin,box,15,500000
+M0026,Dietary supplement,box,11,500000
+M0027,Fiber supplements,box,12,550000
+M0028,Glucosamine,box,13,450000
+M0029,Probiotics,box,10,400000
+M0030,Probiotics,box,10,400000
+M0031,Probiotics,box,12,400000
+M0032,Collagen,box,15,650000
+M0033,Probiotics,box,12,400000
+M0034,Fiber supplements,box,14,550000
+M0035,Collagen,box,13,650000
+M0036,Protein powder,box,14,450000
+M0037,Omega-3,box,15,450000
+M0038,Fiber supplements,box,14,550000
+M0039,Multivitamin,box,11,500000
+M0040,Omega-3,box,11,450000
+M0041,Collagen,box,13,650000
+M0042,Dietary supplement,box,10,500000
+M0043,Coenzyme Q10,box,13,450000
+M0044,Mineral supplements,box,14,300000
+M0045,Probiotics,box,13,400000
+M0046,Coenzyme Q10,box,15,450000
+M0047,Protein powder,box,10,450000
+M0048,Collagen,box,13,650000
+M0049,Mineral supplements,box,15,300000
+M0050,Dietary supplement,box,10,500000
+M0051,Omega-3,box,11,450000
+M0052,Coenzyme Q10,box,11,450000
+M0053,Fiber supplements,box,12,550000
+M0054,Collagen,box,11,650000
+M0055,Chondroitin,box,12,600000
+M0056,Probiotics,box,15,400000
+M0057,Mineral supplements,box,13,300000
+M0058,Glucosamine,box,10,450000
+M0059,Herbal supplements,box,14,500000
+M0060,Chondroitin,box,10,600000
+M0061,Collagen,box,14,650000
+M0062,Protein powder,box,15,450000
+M0063,Chondroitin,box,11,600000
+M0064,Probiotics,box,14,400000
+M0065,Dietary supplement,box,13,500000
+M0066,Coenzyme Q10,box,15,450000
+M0067,Coenzyme Q10,box,10,450000
+M0068,Glucosamine,box,11,450000
+M0069,Glucosamine,box,15,450000
+M0070,Protein powder,box,15,450000
+M0071,Herbal supplements,box,14,500000
+M0072,Fiber supplements,box,12,550000
+M0073,Fiber supplements,box,11,550000
+M0074,Glucosamine,box,12,450000
+M0075,Probiotics,box,14,400000
+M0076,Omega-3,box,10,450000
+M0077,Protein powder,box,13,450000
+M0078,Protein powder,box,15,450000
+M0079,Mineral supplements,box,11,300000
+M0080,Herbal supplements,box,15,500000
+M0081,Vitamin supplements,box,12,600000
+M0082,Mineral supplements,box,11,300000
+M0083,Fiber supplements,box,11,550000
+M0084,Vitamin supplements,box,14,600000
+M0085,Protein powder,box,10,450000
+M0086,Herbal supplements,box,11,500000
+M0087,Omega-3,box,11,450000
+M0088,Chondroitin,box,15,600000
+M0089,Omega-3,box,15,450000
+M0090,Protein powder,box,15,450000
+M0091,Dietary supplement,box,15,500000
+M0092,Herbal supplements,box,11,500000
+M0093,Mineral supplements,box,15,300000
+M0094,Omega-3,box,15,450000
+M0095,Mineral supplements,box,14,300000
+M0096,Mineral supplements,box,10,300000
+M0097,Coenzyme Q10,box,14,450000
+M0098,Omega-3,box,15,450000
+M0099,Probiotics,box,14,400000
+M0100,Collagen,box,12,650000
+M0101,Herbal supplements,box,11,500000
+M0102,Fiber supplements,box,15,550000
+M0103,Fiber supplements,box,14,550000
+M0104,Probiotics,box,15,400000
+M0105,Chondroitin,box,10,600000
+M0106,Glucosamine,box,13,450000
+M0107,Dietary supplement,box,14,500000
+M0108,Collagen,box,10,650000
+M0109,Fiber supplements,box,10,550000
+M0110,Collagen,box,12,650000
+M0111,Probiotics,box,10,400000
+M0112,Fiber supplements,box,14,550000
+M0113,Fiber supplements,box,14,550000
+M0114,Omega-3,box,15,450000
+M0115,Coenzyme Q10,box,15,450000
+M0116,Multivitamin,box,12,500000
+M0117,Glucosamine,box,15,450000
+M0118,Multivitamin,box,13,500000
+M0119,Protein powder,box,10,450000
+M0120,Mineral supplements,box,15,300000
+M0121,Multivitamin,box,15,500000
+M0122,Mineral supplements,box,14,300000
+M0123,Vitamin supplements,box,10,600000
+M0124,Protein powder,box,12,450000
+M0125,Collagen,box,12,650000
+M0126,Chondroitin,box,11,600000
+M0127,Protein powder,box,14,450000
+M0128,Protein powder,box,12,450000
+M0129,Omega-3,box,11,450000
+M0130,Probiotics,box,13,400000
+M0131,Omega-3,box,14,450000
+M0132,Glucosamine,box,12,450000
+M0133,Herbal supplements,box,14,500000
+M0134,Chondroitin,box,15,600000
+M0135,Glucosamine,box,11,450000
+M0136,Mineral supplements,box,10,300000
+M0137,Chondroitin,box,13,600000
+M0138,Chondroitin,box,14,600000
+M0139,Dietary supplement,box,12,500000
+M0140,Glucosamine,box,10,450000
+M0141,Vitamin supplements,box,14,600000
+M0142,Coenzyme Q10,box,10,450000
+M0143,Fiber supplements,box,14,550000
+M0144,Coenzyme Q10,box,10,450000
+M0145,Collagen,box,13,650000
+M0146,Chondroitin,box,15,600000
+M0147,Glucosamine,box,13,450000
+M0148,Protein powder,box,15,450000
+M0149,Vitamin supplements,box,12,600000
+M0150,Chondroitin,box,13,600000
+M0151,Collagen,box,12,650000
+M0152,Dietary supplement,box,11,500000
+M0153,Chondroitin,box,12,600000
+M0154,Probiotics,box,13,400000
+M0155,Vitamin supplements,box,12,600000
+M0156,Dietary supplement,box,11,500000
+M0157,Fiber supplements,box,15,550000
+M0158,Herbal supplements,box,14,500000
+M0159,Probiotics,box,15,400000
+M0160,Herbal supplements,box,13,500000
+M0161,Chondroitin,box,14,600000
+M0162,Chondroitin,box,15,600000
+M0163,Glucosamine,box,10,450000
+M0164,Herbal supplements,box,11,500000
+M0165,Fiber supplements,box,10,550000
+M0166,Chondroitin,box,10,600000
+M0167,Mineral supplements,box,13,300000
+M0168,Glucosamine,box,13,450000
+M0169,Chondroitin,box,15,600000
+M0170,Mineral supplements,box,13,300000
+M0171,Mineral supplements,box,12,300000
+M0172,Vitamin supplements,box,11,600000
+M0173,Multivitamin,box,11,500000
+M0174,Vitamin supplements,box,10,600000
+M0175,Probiotics,box,14,400000
+M0176,Multivitamin,box,12,500000
+M0177,Vitamin supplements,box,11,600000
+M0178,Herbal supplements,box,11,500000
+M0179,Mineral supplements,box,10,300000
+M0180,Collagen,box,15,650000
+M0181,Fiber supplements,box,14,550000
+M0182,Dietary supplement,box,10,500000
+M0183,Dietary supplement,box,15,500000
+M0184,Probiotics,box,15,400000
+M0185,Multivitamin,box,10,500000
+M0186,Collagen,box,15,650000
+M0187,Multivitamin,box,12,500000
+M0188,Fiber supplements,box,15,550000
+M0189,Chondroitin,box,10,600000
+M0190,Glucosamine,box,12,450000
+M0191,Multivitamin,box,13,500000
+M0192,Chondroitin,box,10,600000
+M0193,Multivitamin,box,15,500000
+M0194,Coenzyme Q10,box,11,450000
+M0195,Coenzyme Q10,box,15,450000
+M0196,Probiotics,box,12,400000
+M0197,Vitamin supplements,box,11,600000
+M0198,Probiotics,box,10,400000
+M0199,Dietary supplement,box,14,500000
+M0200,Collagen,box,11,650000

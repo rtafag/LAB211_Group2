@@ -61,12 +61,22 @@ public class DataGenerator {
 
     private static void generateMedicines() throws IOException {
         try (BufferedWriter fw = openCsv("medicines.csv")) {
-            fw.write("medicine_id,medicine_name,unit,units_per_box,description,manufacturer\n");
+            fw.write("medicine_id,medicine_name,unit,units_per_box,price\n");
+            java.util.Map<String, Double> medicinePrices = new java.util.HashMap<>();
             for (int i = 1; i <= 200; i++) {
+                String medicineName = MEDICINES[rand.nextInt(MEDICINES.length)];
                 String unit = "box";
                 int unitsPerBox = 10 + rand.nextInt(6);
-                fw.write(String.format("M%04d,%s,%s,%d,Desc %d,Manu %d\n", i,
-                        MEDICINES[rand.nextInt(MEDICINES.length)], unit, unitsPerBox, i, 1 + rand.nextInt(10)));
+
+                double price;
+                if (medicinePrices.containsKey(medicineName)) {
+                    price = medicinePrices.get(medicineName);
+                } else {
+                    price = 300000 + (rand.nextInt(9) * 50000);
+                    medicinePrices.put(medicineName, price);
+                }
+
+                fw.write(String.format("M%04d,%s,%s,%d,%.0f\n", i, medicineName, unit, unitsPerBox, price));
             }
         }
     }

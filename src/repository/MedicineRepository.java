@@ -29,7 +29,7 @@ public class MedicineRepository extends CsvRepository<Medicine> {
 
     @Override
     protected String getHeader() {
-        return "medicine_id,medicine_name,unit,units_per_box,description,manufacturer";
+        return "medicine_id,medicine_name,unit,units_per_box,price";
     }
 
     public List<Medicine> findAll() {

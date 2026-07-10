@@ -240,24 +240,24 @@ public class MainView {
     private void medicinesManageMenu(Scanner sc) {
         while (true) {
             System.out.println("MEDICINE MANAGEMENT:");
-            System.out.println("1. Add medicine to stock");
-            System.out.println("2. Edit medicine in stock");
-            System.out.println("3. Delete medicine from stock");
+            System.out.println("1. View medicine information");
+            System.out.println("2. Add medicine");
+            System.out.println("3. Edit medicine");
             System.out.println("0. Back");
             System.out.print("Choice: ");
             String choice = sc.nextLine();
 
             switch (choice) {
                 case "1":
-                    addMedicineToStockFlow(sc);
+                    viewMedicineInfoFlow(sc);
                     pauseForEnter(sc);
                     break;
                 case "2":
-                    editMedicineInStockFlow(sc);
+                    addMedicineFlow(sc);
                     pauseForEnter(sc);
                     break;
                 case "3":
-                    deleteMedicineFromStockFlow(sc);
+                    editMedicineFlow(sc);
                     pauseForEnter(sc);
                     break;
                 case "0":
@@ -268,58 +268,95 @@ public class MainView {
         }
     }
 
-    private void addMedicineToStockFlow(Scanner sc) {
+    private void viewMedicineInfoFlow(Scanner sc) {
+        System.out.print("Enter medicine ID (e.g., M0001): ");
+        String medicineId = sc.nextLine();
+
+        try {
+            repository.MedicineRepository medicineRepo = new repository.MedicineRepository();
+            java.util.List<model.Medicine> medicines = medicineRepo.findAll();
+            model.Medicine medicine = medicines.stream()
+                    .filter(m -> m.getMedicineId().equals(medicineId))
+                    .findFirst()
+                    .orElse(null);
+
+            if (medicine == null) {
+                System.out.println("Medicine not found: " + medicineId);
+                return;
+            }
+
+            System.out.println("--- Medicine Information ---");
+            System.out.println("ID: " + medicine.getMedicineId());
+            System.out.println("Name: " + medicine.getMedicineName());
+            System.out.println("Unit: " + medicine.getUnit());
+            System.out.println("Units per box: " + medicine.getUnitsPerBox());
+            System.out.println("Price: " + medicine.getPrice());
+        } catch (Exception e) {
+            System.out.println("Error viewing medicine: " + e.getMessage());
+        }
+    }
+
+    private void addMedicineFlow(Scanner sc) {
         System.out.print("Enter medicine name: ");
         String medicineName = sc.nextLine();
-        System.out.print("Enter branch ID (e.g., B001): ");
-        String branchId = sc.nextLine();
-        System.out.print("Enter quantity: ");
-        String quantityInput = sc.nextLine();
+        System.out.print("Enter unit (e.g., box): ");
+        String unit = sc.nextLine();
+        System.out.print("Enter units per box: ");
+        String unitsPerBoxInput = sc.nextLine();
+        System.out.print("Enter price: ");
+        String priceInput = sc.nextLine();
 
         try {
-            int quantity = Integer.parseInt(quantityInput);
-            stockController.addMedicineToStock(medicineName, branchId, quantity);
-            System.out.println("Medicine saved to stock successfully.");
+            repository.MedicineRepository medicineRepo = new repository.MedicineRepository();
+            String medicineId = medicineRepo.generateNextMedicineId();
+            int unitsPerBox = Integer.parseInt(unitsPerBoxInput);
+            double price = Double.parseDouble(priceInput);
+
+            model.Medicine medicine = new model.Medicine(medicineId, medicineName, unit, unitsPerBox, price);
+            medicineRepo.save(medicine);
+            System.out.println("Medicine added successfully: " + medicineId);
         } catch (Exception e) {
-            System.out.println("Error adding medicine to stock: " + e.getMessage());
+            System.out.println("Error adding medicine: " + e.getMessage());
         }
     }
 
-    private void editMedicineInStockFlow(Scanner sc) {
-        System.out.print("Enter stock ID to edit (e.g., S00001): ");
-        String stockId = sc.nextLine();
-        System.out.print("New medicine name (Enter to keep current): ");
-        String newMedicineName = sc.nextLine();
-        System.out.print("New branch ID (Enter to keep current): ");
-        String newBranchId = sc.nextLine();
-        System.out.print("New quantity (Enter to keep current): ");
-        String newQuantityInput = sc.nextLine();
+    private void editMedicineFlow(Scanner sc) {
+        System.out.print("Enter medicine ID to edit (e.g., M0001): ");
+        String medicineId = sc.nextLine();
 
         try {
-            Integer newQuantity = null;
-            if (newQuantityInput != null && !newQuantityInput.isBlank()) {
-                newQuantity = Integer.parseInt(newQuantityInput);
+            repository.MedicineRepository medicineRepo = new repository.MedicineRepository();
+            java.util.List<model.Medicine> medicines = medicineRepo.findAll();
+            model.Medicine medicine = medicines.stream()
+                    .filter(m -> m.getMedicineId().equals(medicineId))
+                    .findFirst()
+                    .orElse(null);
+
+            if (medicine == null) {
+                System.out.println("Medicine not found: " + medicineId);
+                return;
             }
-            stockController.editMedicineInStock(
-                    stockId,
-                    newMedicineName,
-                    newBranchId,
-                    newQuantity);
-            System.out.println("Medicine stock updated successfully.");
-        } catch (Exception e) {
-            System.out.println("Error editing medicine stock: " + e.getMessage());
-        }
-    }
 
-    private void deleteMedicineFromStockFlow(Scanner sc) {
-        System.out.print("Enter stock ID to delete (e.g., S00001): ");
-        String stockId = sc.nextLine();
+            System.out.print("New medicine name (Enter to keep current [" + medicine.getMedicineName() + "]): ");
+            String newName = sc.nextLine();
+            System.out.print("New unit (Enter to keep current [" + medicine.getUnit() + "]): ");
+            String newUnit = sc.nextLine();
+            System.out.print("New units per box (Enter to keep current [" + medicine.getUnitsPerBox() + "]): ");
+            String newUnitsPerBoxInput = sc.nextLine();
+            System.out.print("New price (Enter to keep current [" + medicine.getPrice() + "]): ");
+            String newPriceInput = sc.nextLine();
 
-        try {
-            stockController.deleteMedicineFromStock(stockId);
-            System.out.println("Medicine stock deleted successfully.");
+            String updatedName = newName.isBlank() ? medicine.getMedicineName() : newName;
+            String updatedUnit = newUnit.isBlank() ? medicine.getUnit() : newUnit;
+            int updatedUnitsPerBox = newUnitsPerBoxInput.isBlank() ? medicine.getUnitsPerBox() : Integer.parseInt(newUnitsPerBoxInput);
+            double updatedPrice = newPriceInput.isBlank() ? medicine.getPrice() : Double.parseDouble(newPriceInput);
+
+            model.Medicine updatedMedicine = new model.Medicine(medicineId, updatedName, updatedUnit, updatedUnitsPerBox, updatedPrice);
+            medicines.replaceAll(m -> m.getMedicineId().equals(medicineId) ? updatedMedicine : m);
+            medicineRepo.writeAll("data/medicines.csv", medicines);
+            System.out.println("Medicine updated successfully: " + medicineId);
         } catch (Exception e) {
-            System.out.println("Error deleting medicine stock: " + e.getMessage());
+            System.out.println("Error editing medicine: " + e.getMessage());
         }
     }
 }
