@@ -1,6 +1,8 @@
 package controller;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import model.BatchLot;
 import model.Prescription;
@@ -13,6 +15,13 @@ import repository.PrescriptionRepository;
 import repository.StockRepository;
 
 public class ReportController {
+
+    private static final NumberFormat MONEY_FORMAT = NumberFormat.getNumberInstance(Locale.US);
+
+    static {
+        MONEY_FORMAT.setMaximumFractionDigits(0);
+        MONEY_FORMAT.setMinimumFractionDigits(0);
+    }
 
     private final StockRepository stockRepo;
     private final PrescriptionRepository presRepo;
@@ -108,17 +117,21 @@ public class ReportController {
                     prescriptionTotal += lineTotal;
                     System.out.println("  Medicine: " + medicine.getMedicineName()
                             + " | Qty: " + quantity
-                            + " | Price: " + medicine.getPrice()
-                            + " | Line Total: " + lineTotal);
+                            + " | Price: " + formatMoney(medicine.getPrice())
+                            + " | Line Total: " + formatMoney(lineTotal));
                 }
             }
 
             totalRevenue += prescriptionTotal;
             System.out.println("Prescription " + p.getPrescriptionId()
-                    + " | Total: " + prescriptionTotal);
+                    + " | Total: " + formatMoney(prescriptionTotal));
             System.out.println();
         }
 
-        System.out.println("===== TOTAL REVENUE: " + totalRevenue + " =====");
+        System.out.println("===== TOTAL REVENUE: " + formatMoney(totalRevenue) + " =====");
+    }
+
+    private String formatMoney(double amount) {
+        return MONEY_FORMAT.format(amount);
     }
 }

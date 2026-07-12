@@ -41,11 +41,11 @@ public class MainView {
         }
 
         switch (user.getRole()) {
-            case "PHARMACIST":
+            case "STAFF":
                 pharmacistMenu(user, sc);
                 break;
-            case "MANAGER":
-                managerMenu(user, sc);
+            case "ADMIN":
+                new view.AdminView(new controller.AdminController(), user).showMenu(sc);
                 break;
             default:
                 System.out.println("Invalid access rights.");

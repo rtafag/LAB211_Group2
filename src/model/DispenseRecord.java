@@ -21,6 +21,26 @@ public class DispenseRecord extends BaseEntity {
         this.branchId = branchId;
     }
 
+    public String getDispenseRecordId() {
+        return dispenseRecordId;
+    }
+
+    public String getPrescriptionId() {
+        return prescriptionId;
+    }
+
+    public String getPharmacistId() {
+        return pharmacistId;
+    }
+
+    public LocalDate getDispensedTime() {
+        return dispensedTime;
+    }
+
+    public String getBranchId() {
+        return branchId;
+    }
+
     @Override
     public String toCsvLine() {
         return String.join(",", dispenseRecordId, prescriptionId, pharmacistId, dispensedTime.format(F), branchId);

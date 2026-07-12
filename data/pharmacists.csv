@@ -1,5 +1,5 @@
 ﻿pharmacist_id,pharmacist_name,branch_id,phone_number,password,role
-P001,Phan Anh Giang,B003,0906812119,password123,STAFF
+P001,Phan Anh Giang,B003,0906812119,password123,ADMIN
 P002,Vũ Văn Cường,B008,0941280000,password123,STAFF
 P003,Cao Quang Dũng,B009,0911895772,password123,STAFF
 P004,Bùi Anh Thu,B008,0957666501,password123,STAFF

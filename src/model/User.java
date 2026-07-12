@@ -48,10 +48,10 @@ public class User {
         }
         String normalized = role.trim().toUpperCase();
         if ("STAFF".equals(normalized) || "PHARMACIST".equals(normalized)) {
-            return "PHARMACIST";
+            return "STAFF";
         }
         if ("MANAGER".equals(normalized) || "ADMIN".equals(normalized)) {
-            return "MANAGER";
+            return "ADMIN";
         }
         return normalized;
     }
