@@ -16,7 +16,7 @@ Hệ thống mô phỏng quy trình quản lý chuỗi nhà thuốc với dữ l
 
 ## 2. Yêu cầu môi trường
 
-- JDK 25
+- JDK 21+
 - Maven 3.9+
 - Windows PowerShell / CMD
 
