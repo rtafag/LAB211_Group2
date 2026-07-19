@@ -3,6 +3,7 @@ import controller.DispenseController;
 import controller.LoginController;
 import controller.PrescriptionController;
 import controller.ReportController;
+import controller.SimulatorController;
 import controller.StockController;
 import repository.BatchLotRepository;
 import repository.DispenseRecordRepository;
@@ -11,6 +12,7 @@ import repository.PrescriptionRepository;
 import repository.StockRepository;
 import repository.UserRepository;
 import view.MainView;
+
 
 public class Main {
 
@@ -36,5 +38,12 @@ public class Main {
                 reportController,
                 prescriptionController);
         view.showMenu();
+        SimulatorController simulator = new SimulatorController();
+simulator.runSimulation("NO_LOCK", 200);
+simulator.runSimulation("SYNC", 200);
+simulator.runSimulation("OPTIMISTIC", 200);
+simulator.runSimulation("FILE_LOCK", 200);
+
+
     }
 }
