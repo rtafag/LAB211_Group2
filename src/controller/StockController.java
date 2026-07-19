@@ -71,7 +71,7 @@ public class StockController {
             List<Stock> lowestStocks = stocks.stream()
                     .filter(stock -> branchId.equals(stock.getBranchId()))
                     .sorted(Comparator.comparingInt(Stock::getQuantity))
-                    .limit(10)
+                    .limit(20)
                     .collect(Collectors.toList());
 
             System.out.println("=====LOW STOCK ALERT" + branchId + " =====");

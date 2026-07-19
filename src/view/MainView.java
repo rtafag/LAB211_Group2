@@ -196,8 +196,8 @@ public class MainView {
     private void managerMenu(User user, Scanner sc) {
         while (true) {
             System.out.println("MANAGER MENU: stock management, reports");
-            System.out.println("1. View stock reports by branch");
-            System.out.println("2. View low-stock alerts by branch (< 60)");
+            System.out.println("1. View stock reports");
+            System.out.println("2. View low-stock alerts");
             System.out.println("3. View near expiry warning");
             System.out.println("4. Sale report");
             System.out.println("0. Back");
