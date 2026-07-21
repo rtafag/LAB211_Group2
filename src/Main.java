@@ -52,9 +52,33 @@ public class Main {
                         medicineController);
                 view.showMenu();
             } else if ("2".equals(option)) {
+                System.out.println("\n--- CONCURRENCY SIMULATION CONFIGURATION ---");
+                System.out.print("Enter number of threads (Press ENTER for default 200): ");
+                String threadsInput = scanner.nextLine().trim();
+                int threads = 200;
+                if (!threadsInput.isEmpty()) {
+                    try {
+                        threads = Integer.parseInt(threadsInput);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number. Using default 200 threads.");
+                    }
+                }
+
+                System.out.println("Select concurrency mode:");
+                System.out.println("1. ALL Modes (NO_LOCK, SYNC, OPTIMISTIC, FILE_LOCK - Default)");
+                System.out.println("2. NO_LOCK");
+                System.out.println("3. SYNC");
+                System.out.println("4. OPTIMISTIC");
+                System.out.println("5. FILE_LOCK");
+                System.out.print("Please select mode (1-5, Press ENTER for 1): ");
+                String modeChoice = scanner.nextLine().trim();
+                if (modeChoice.isEmpty()) {
+                    modeChoice = "1";
+                }
+
                 SimulatorController simulator = new SimulatorController();
                 java.util.List<view.SimulatorView.SimulationResult> results = new java.util.ArrayList<>();
-                simulator.runAllSimulations(results);
+                simulator.runCustomSimulation(modeChoice, threads, results);
                 view.SimulatorView.printResultsTable(results);
             } else if ("0".equals(option)) {
                 System.out.println("Exiting application. Goodbye!");
