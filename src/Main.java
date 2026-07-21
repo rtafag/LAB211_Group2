@@ -1,6 +1,7 @@
 
 import controller.DispenseController;
 import controller.LoginController;
+import controller.MedicineController;
 import controller.PrescriptionController;
 import controller.ReportController;
 import controller.SimulatorController;
@@ -12,7 +13,6 @@ import repository.PrescriptionRepository;
 import repository.StockRepository;
 import repository.UserRepository;
 import view.MainView;
-
 
 public class Main {
 
@@ -30,6 +30,7 @@ public class Main {
         StockController stockController = new StockController(stockRepo);
         ReportController reportController = new ReportController(stockRepo, presRepo, lotRepo);
         PrescriptionController prescriptionController = new PrescriptionController(presRepo, itemRepo);
+        MedicineController medicineController = new MedicineController();
 
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         while (true) {
@@ -47,7 +48,8 @@ public class Main {
                         dispenseController,
                         stockController,
                         reportController,
-                        prescriptionController);
+                        prescriptionController,
+                        medicineController);
                 view.showMenu();
             } else if ("2".equals(option)) {
                 SimulatorController simulator = new SimulatorController();

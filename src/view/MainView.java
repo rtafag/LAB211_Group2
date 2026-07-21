@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 import controller.DispenseController;
 import controller.LoginController;
+import controller.MedicineController;
 import controller.PrescriptionController;
 import controller.ReportController;
 import controller.StockController;
+import model.Medicine;
 import model.Prescription;
 import model.User;
 
@@ -17,14 +19,16 @@ public class MainView {
     private final StockController stockController;
     private final ReportController reportController;
     private final PrescriptionController prescriptionController;
+    private final MedicineController medicineController;
 
     public MainView(LoginController l, DispenseController d, StockController s, ReportController r,
-            PrescriptionController p) {
+            PrescriptionController p, MedicineController m) {
         this.loginController = l;
         this.dispenseController = d;
         this.stockController = s;
         this.reportController = r;
         this.prescriptionController = p;
+        this.medicineController = m;
     }
 
     public void showMenu() {
@@ -243,6 +247,7 @@ public class MainView {
             System.out.println("1. View medicine information");
             System.out.println("2. Add medicine");
             System.out.println("3. Edit medicine");
+            System.out.println("4. Delete medicine");
             System.out.println("0. Back");
             System.out.print("Choice: ");
             String choice = sc.nextLine();
@@ -260,6 +265,10 @@ public class MainView {
                     editMedicineFlow(sc);
                     pauseForEnter(sc);
                     break;
+                case "4":
+                    deleteMedicineFlow(sc);
+                    pauseForEnter(sc);
+                    break;
                 case "0":
                     return;
                 default:
@@ -273,12 +282,7 @@ public class MainView {
         String medicineId = sc.nextLine();
 
         try {
-            repository.MedicineRepository medicineRepo = new repository.MedicineRepository();
-            java.util.List<model.Medicine> medicines = medicineRepo.findAll();
-            model.Medicine medicine = medicines.stream()
-                    .filter(m -> m.getMedicineId().equals(medicineId))
-                    .findFirst()
-                    .orElse(null);
+            Medicine medicine = medicineController.findById(medicineId);
 
             if (medicine == null) {
                 System.out.println("Medicine not found: " + medicineId);
@@ -307,14 +311,8 @@ public class MainView {
         String priceInput = sc.nextLine();
 
         try {
-            repository.MedicineRepository medicineRepo = new repository.MedicineRepository();
-            String medicineId = medicineRepo.generateNextMedicineId();
-            int unitsPerBox = Integer.parseInt(unitsPerBoxInput);
-            double price = Double.parseDouble(priceInput);
-
-            model.Medicine medicine = new model.Medicine(medicineId, medicineName, unit, unitsPerBox, price);
-            medicineRepo.save(medicine);
-            System.out.println("Medicine added successfully: " + medicineId);
+            Medicine medicine = medicineController.addMedicine(medicineName, unit, unitsPerBoxInput, priceInput);
+            System.out.println("Medicine added successfully: " + medicine.getMedicineId());
         } catch (Exception e) {
             System.out.println("Error adding medicine: " + e.getMessage());
         }
@@ -325,12 +323,7 @@ public class MainView {
         String medicineId = sc.nextLine();
 
         try {
-            repository.MedicineRepository medicineRepo = new repository.MedicineRepository();
-            java.util.List<model.Medicine> medicines = medicineRepo.findAll();
-            model.Medicine medicine = medicines.stream()
-                    .filter(m -> m.getMedicineId().equals(medicineId))
-                    .findFirst()
-                    .orElse(null);
+            Medicine medicine = medicineController.findById(medicineId);
 
             if (medicine == null) {
                 System.out.println("Medicine not found: " + medicineId);
@@ -346,17 +339,42 @@ public class MainView {
             System.out.print("New price (Enter to keep current [" + medicine.getPrice() + "]): ");
             String newPriceInput = sc.nextLine();
 
-            String updatedName = newName.isBlank() ? medicine.getMedicineName() : newName;
-            String updatedUnit = newUnit.isBlank() ? medicine.getUnit() : newUnit;
-            int updatedUnitsPerBox = newUnitsPerBoxInput.isBlank() ? medicine.getUnitsPerBox() : Integer.parseInt(newUnitsPerBoxInput);
-            double updatedPrice = newPriceInput.isBlank() ? medicine.getPrice() : Double.parseDouble(newPriceInput);
-
-            model.Medicine updatedMedicine = new model.Medicine(medicineId, updatedName, updatedUnit, updatedUnitsPerBox, updatedPrice);
-            medicines.replaceAll(m -> m.getMedicineId().equals(medicineId) ? updatedMedicine : m);
-            medicineRepo.writeAll("data/medicines.csv", medicines);
-            System.out.println("Medicine updated successfully: " + medicineId);
+            Medicine updatedMedicine = medicineController.updateMedicine(
+                    medicineId,
+                    newName,
+                    newUnit,
+                    newUnitsPerBoxInput,
+                    newPriceInput);
+            System.out.println("Medicine updated successfully: " + updatedMedicine.getMedicineId());
         } catch (Exception e) {
             System.out.println("Error editing medicine: " + e.getMessage());
+        }
+    }
+
+    private void deleteMedicineFlow(Scanner sc) {
+        System.out.print("Enter medicine ID to delete (e.g., M0001): ");
+        String medicineId = sc.nextLine();
+
+        try {
+            Medicine medicine = medicineController.findById(medicineId);
+
+            if (medicine == null) {
+                System.out.println("Medicine not found: " + medicineId);
+                return;
+            }
+
+            System.out.println("Medicine to delete: " + medicine.getMedicineName() + " (" + medicine.getMedicineId() + ")");
+            System.out.print("Type YES to confirm deletion: ");
+            String confirm = sc.nextLine();
+            if (!"YES".equalsIgnoreCase(confirm.trim())) {
+                System.out.println("Delete cancelled.");
+                return;
+            }
+
+            medicineController.deleteMedicine(medicineId);
+            System.out.println("Medicine deleted successfully: " + medicineId);
+        } catch (Exception e) {
+            System.out.println("Error deleting medicine: " + e.getMessage());
         }
     }
 }
