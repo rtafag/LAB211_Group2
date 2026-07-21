@@ -44,12 +44,28 @@ public class SimulatorController {
     }
 
     public void runAllSimulations(List<SimulationResult> resultsList) {
+        runCustomSimulation("ALL", 200, resultsList);
+    }
+
+    public void runCustomSimulation(String modeChoice, int numThreads, List<SimulationResult> resultsList) {
         backupDataFiles();
         try {
-            resultsList.add(runSimulationInternal("NO_LOCK", 200));
-            resultsList.add(runSimulationInternal("SYNC", 200));
-            resultsList.add(runSimulationInternal("OPTIMISTIC", 200));
-            resultsList.add(runSimulationInternal("FILE_LOCK", 200));
+            if ("ALL".equalsIgnoreCase(modeChoice) || "1".equals(modeChoice)) {
+                resultsList.add(runSimulationInternal("NO_LOCK", numThreads));
+                resultsList.add(runSimulationInternal("SYNC", numThreads));
+                resultsList.add(runSimulationInternal("OPTIMISTIC", numThreads));
+                resultsList.add(runSimulationInternal("FILE_LOCK", numThreads));
+            } else {
+                String modeName;
+                switch (modeChoice) {
+                    case "2": modeName = "NO_LOCK"; break;
+                    case "3": modeName = "SYNC"; break;
+                    case "4": modeName = "OPTIMISTIC"; break;
+                    case "5": modeName = "FILE_LOCK"; break;
+                    default: modeName = modeChoice.toUpperCase(); break;
+                }
+                resultsList.add(runSimulationInternal(modeName, numThreads));
+            }
         } finally {
             restoreDataFiles();
             cleanupBackupFiles();
