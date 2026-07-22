@@ -79,4 +79,12 @@ public class BatchLotRepository extends CsvRepository<BatchLot> {
 
         throw new IllegalArgumentException("Batch lot not found: " + lotId);
     }
+
+    public void deleteByMedicineId(String medicineId) {
+        List<BatchLot> lots = readAll(fileName);
+        boolean removed = lots.removeIf(lot -> medicineId.equals(lot.getMedicineId()));
+        if (removed) {
+            writeAll(fileName, lots);
+        }
+    }
 }

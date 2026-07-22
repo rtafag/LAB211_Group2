@@ -1,4 +1,4 @@
-﻿prescription_item_id,prescription_id,medicine_id,quantity
+prescription_item_id,prescription_id,medicine_id,quantity
 PI00001,PR00462,M0121,1
 PI00002,PR01277,M0074,3
 PI00003,PR01844,M0086,2
@@ -4999,3 +4999,4 @@ PI04997,PR00138,M0048,1
 PI04998,PR01536,M0037,2
 PI04999,PR00568,M0198,5
 PI05000,PR01973,M0053,4
+PI05001,PR02001,M0001,12

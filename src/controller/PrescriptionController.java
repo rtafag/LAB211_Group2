@@ -18,7 +18,7 @@ public class PrescriptionController {
     }
 
     public Prescription createPrescription(String patientName, String patientDob, String createdDateInput,
-            String branchId, String medicineId) {
+            String branchId, String medicineId, int quantity) {
         String createdDate = (createdDateInput == null || createdDateInput.isBlank())
                 ? LocalDate.now().toString()
                 : LocalDate.parse(createdDateInput).toString();
@@ -39,7 +39,7 @@ public class PrescriptionController {
                 itemRepo.generateNextPrescriptionItemId(),
                 prescription.getPrescriptionId(),
                 medicineId,
-                1);
+                quantity);
         itemRepo.save(item);
 
         return prescription;

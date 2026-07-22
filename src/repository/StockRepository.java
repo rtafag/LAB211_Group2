@@ -200,4 +200,14 @@ public class StockRepository extends CsvRepository<Stock> {
                 .orElseThrow(() -> new IllegalArgumentException("No stock found for medicine " + medicineId
                 + (branchId != null ? " in branch " + branchId : "")));
     }
+
+    public void deleteByMedicineId(String medicineId) {
+        synchronized (STOCK_LOCK) {
+            List<Stock> stocks = readAll(fileName);
+            boolean removed = stocks.removeIf(stock -> medicineId.equals(stock.getMedicineId()));
+            if (removed) {
+                writeAll(fileName, stocks);
+            }
+        }
+    }
 }

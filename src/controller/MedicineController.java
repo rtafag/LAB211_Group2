@@ -4,13 +4,19 @@ import java.util.List;
 
 import model.Medicine;
 import repository.MedicineRepository;
+import repository.StockRepository;
+import repository.BatchLotRepository;
 
 public class MedicineController {
 
     private final MedicineRepository medicineRepo;
+    private final StockRepository stockRepo;
+    private final BatchLotRepository lotRepo;
 
     public MedicineController() {
         this.medicineRepo = new MedicineRepository();
+        this.stockRepo = new StockRepository();
+        this.lotRepo = new BatchLotRepository();
     }
 
     public Medicine findById(String medicineId) {
@@ -88,6 +94,10 @@ public class MedicineController {
 
         medicines.removeIf(m -> m.getMedicineId().equals(current.getMedicineId()));
         medicineRepo.writeAll("data/medicines.csv", medicines);
+
+        stockRepo.deleteByMedicineId(medicineId.trim());
+        lotRepo.deleteByMedicineId(medicineId.trim());
+
         return current;
     }
 }

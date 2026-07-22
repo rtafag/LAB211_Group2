@@ -1,4 +1,4 @@
-﻿prescription_id,patient_name,patient_birthday,created_date,expired_date,status,branch_id,version
+prescription_id,patient_name,patient_dob,created_date,expired_date,status,branch_id,version
 PR00001,Dương Hữu Hùng,1994-10-05,2026-07-01,2026-07-06,PENDING,B005,1
 PR00002,Phan Hoàng Thảo,1984-05-19,2026-07-03,2026-07-08,PENDING,B016,1
 PR00003,Chu Văn An,1966-10-22,2026-07-07,2026-07-12,PENDING,B015,1
@@ -1999,3 +1999,4 @@ PR01997,Võ Hữu Cao,1965-07-01,2026-07-06,2026-07-11,DISPENSED,B013,1
 PR01998,Ngô Hoàng Trang,1955-06-11,2026-07-09,2026-07-14,DISPENSED,B005,1
 PR01999,Dương Hữu Lan,2001-04-17,2026-07-09,2026-07-14,DISPENSED,B018,1
 PR02000,Phan Minh Nam,1994-06-07,2026-07-09,2026-07-14,DISPENSED,B007,1
+PR02001,Dispense Test Patient,1995-05-15,2026-07-22,2026-07-27,DISPENSED,B001,2

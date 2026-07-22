@@ -100,17 +100,26 @@ public class MainView {
         String branchId = sc.nextLine();
         System.out.print("Enter medicine ID (e.g., M0001): ");
         String medicineId = sc.nextLine();
+        System.out.print("Enter quantity: ");
+        String quantityInput = sc.nextLine();
         System.out.print("Enter create date (yyyy-MM-dd), press Enter for today: ");
         String createdDate = sc.nextLine();
 
         try {
+            int quantity = Integer.parseInt(quantityInput);
+            if (quantity <= 0) {
+                throw new IllegalArgumentException("Quantity must be greater than 0");
+            }
             model.Prescription created = prescriptionController.createPrescription(
                     patientName,
                     patientDob,
                     createdDate,
                     branchId,
-                    medicineId);
+                    medicineId,
+                    quantity);
             System.out.println("Created prescription successfully: " + created.getPrescriptionId());
+        } catch (NumberFormatException e) {
+            System.out.println("Error creating prescription: Quantity must be a valid integer");
         } catch (Exception e) {
             System.out.println("Error creating prescription: " + e.getMessage());
         }
@@ -248,6 +257,7 @@ public class MainView {
             System.out.println("2. Add medicine");
             System.out.println("3. Edit medicine");
             System.out.println("4. Delete medicine");
+            System.out.println("5. Add medicine to batchlot");
             System.out.println("0. Back");
             System.out.print("Choice: ");
             String choice = sc.nextLine();
@@ -267,6 +277,10 @@ public class MainView {
                     break;
                 case "4":
                     deleteMedicineFlow(sc);
+                    pauseForEnter(sc);
+                    break;
+                case "5":
+                    addMedicineToStockFlow(sc);
                     pauseForEnter(sc);
                     break;
                 case "0":
@@ -375,6 +389,27 @@ public class MainView {
             System.out.println("Medicine deleted successfully: " + medicineId);
         } catch (Exception e) {
             System.out.println("Error deleting medicine: " + e.getMessage());
+        }
+    }
+
+    private void addMedicineToStockFlow(Scanner sc) {
+        System.out.print("Enter medicine ID (e.g., M0001): ");
+        String medicineId = sc.nextLine().trim();
+        System.out.print("Enter branch ID (e.g., B001): ");
+        String branchId = sc.nextLine().trim();
+        System.out.print("Enter quantity to add (boxes): ");
+        String quantityInput = sc.nextLine().trim();
+        System.out.print("Enter expiry date (yyyy-MM-dd): ");
+        String expiryDate = sc.nextLine().trim();
+
+        try {
+            int quantity = Integer.parseInt(quantityInput);
+            stockController.addMedicineToStock(branchId, medicineId, quantity, expiryDate);
+            System.out.println("Medicine successfully added to stock and batch lots.");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Quantity must be a valid integer.");
+        } catch (Exception e) {
+            System.out.println("Error adding medicine to stock: " + e.getMessage());
         }
     }
 }

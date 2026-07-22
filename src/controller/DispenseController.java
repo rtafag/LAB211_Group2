@@ -51,20 +51,11 @@ public class DispenseController {
                 inventoryNote = "No sufficient stock for medicine " + item.getMedicineId() + " in branch " + branchId;
                 break;
             }
-
-            BatchLot bestLot = lotRepo.findBestLot(item.getMedicineId(), branchId);
-            if (bestLot == null || bestLot.getQuantity() < item.getQuantity()) {
-                canDeductInventory = false;
-                inventoryNote = "No valid batch lot for medicine " + item.getMedicineId() + " in branch " + branchId;
-                break;
-            }
         }
 
         if (canDeductInventory) {
             for (PrescriptionItem item : items) {
                 stockRepo.deductWithSync(branchId, item.getMedicineId(), item.getQuantity());
-                BatchLot bestLot = lotRepo.findBestLot(item.getMedicineId(), branchId);
-                lotRepo.consumeFromLot(bestLot.getBatchLotId(), item.getQuantity());
             }
         } else if (items.isEmpty()) {
             inventoryNote = "No items found for this prescription";
